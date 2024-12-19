@@ -1,6 +1,6 @@
 {
-  "name": "nostr-share-component",
-  "private": true,
+  "name": "@tsukemonoGit/nostr-share-component",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -23,5 +23,9 @@
   "unpkg": "dist/nostr-share-component.umd.js",
   "files": [
     "dist"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TsukemonoGit/nostr-share-component.git"
+  }
 }
