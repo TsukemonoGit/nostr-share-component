@@ -8,7 +8,13 @@ export default defineConfig({
     lib: {
       entry: "./src/main.ts",
       name: "NostrShare",
-      fileName: (format) => `nostr-share-component.${format}.js`,
+      fileName: (format) => {
+        if (format === "iife") {
+          return `nostr-share-component.js`; // UMD形式はデフォルトとして扱う
+        }
+        return `nostr-share-component.${format}.js`;
+      },
+      formats: ["umd", "es", "iife"], // 出力形式
     },
   },
   plugins: [
