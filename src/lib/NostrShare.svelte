@@ -19,17 +19,19 @@
 </script>
 
 <button
-  class={props.class || icon ? "nostrShare-icon" : "nostrShare-button"}
+  class={props.class
+    ? props.class
+    : icon
+      ? "nostrShare-icon"
+      : "nostrShare-button"}
   onclick={handleClickOpenDialog}
 >
   <slot>
-    <!-- https://svelte.jp/docs/svelte/legacy-slots#Fallback-content -->
-
     {#if icon}
       <div class="nostrShare-svg">{@html nostrIcon}</div>
     {:else}
       <div class="nostrShare-svg">{@html nostrIcon}</div>
-      Share
+      <span class="nostrShare-text">Share</span>
     {/if}
   </slot>
 </button>
@@ -38,28 +40,80 @@
   <Dialog handleClose={closeDialog} {url} {text} {shareTitle} />
 {/if}
 
-<style lang="postcss">
-  .nostrShare-button {
-    font-weight: bold;
+<style>
+  /* ボタン全体の基本スタイル */
+  .nostrShare-button,
+  .nostrShare-icon {
     display: flex;
     align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
   }
+
+  /* ボタンスタイル */
+  .nostrShare-button {
+    padding: 8px 16px;
+    margin: 4px;
+    font-family:
+      -apple-system,
+      BlinkMacSystemFont,
+      Helvetica Neue,
+      Arial,
+      Hiragino Kaku Gothic ProN,
+      Hiragino Sans,
+      Meiryo,
+      sans-serif;
+    font-weight: bold;
+    border-radius: 8px;
+    background-color: #f3f4f6; /* グレー */
+    color: #374151; /* ダークグレー */
+  }
+
+  .nostrShare-button:hover {
+    background-color: #e5e7eb; /* 少し明るいグレー */
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  }
+
   .nostrShare-button:active {
-    box-shadow: 2;
+    background-color: #d1d5db; /* ダークグレー */
+    transform: scale(0.98);
   }
+
+  /* テキスト用スタイル */
+  .nostrShare-text {
+    margin-left: 8px;
+    font-size: 14px;
+  }
+
+  /* アイコンスタイル */
+  .nostrShare-icon {
+    width: 40px;
+    height: 40px;
+    margin: 4px;
+    border-radius: 50%;
+    background-color: #f3f4f6;
+    color: #374151;
+  }
+
+  .nostrShare-icon:hover {
+    background-color: #e5e7eb;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nostrShare-icon:active {
+    background-color: #d1d5db;
+    transform: scale(0.95);
+  }
+
+  /* アイコン内部のSVG */
   .nostrShare-svg {
     width: 24px;
     height: 24px;
-    align-items: center;
-    display: flex;
-  }
-  .nostrShare-icon {
-    border-radius: 100%;
-    width: 32px;
-    height: 32px;
     display: flex;
     align-items: center;
-    overflow: hidden;
-    border: 1px solid;
+    justify-content: center;
   }
 </style>

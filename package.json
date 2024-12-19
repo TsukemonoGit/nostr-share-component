@@ -17,5 +17,11 @@
     "tslib": "^2.8.1",
     "typescript": "~5.6.2",
     "vite": "^6.0.1"
-  }
+  },
+  "main": "dist/nostr-share-component.umd.js",
+  "module": "dist/nostr-share-component.es.js",
+  "unpkg": "dist/nostr-share-component.umd.js",
+  "files": [
+    "dist"
+  ]
 }

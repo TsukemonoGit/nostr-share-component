@@ -22,12 +22,14 @@
   };
 </script>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="overlay" onclick={handleClose}>
   <div class="inner" onclick={(event) => event.stopPropagation()}>
-    Share
-    <button onclick={handleClose} class="close-button">X</button>
+    <button onclick={handleClose} class="close-button" aria-label="Close"
+      >✖</button
+    >
+    <h2 class="title">Share</h2>
     <div class="list">
       {#each list as li}
         <button class="item" onclick={() => handleClickList(li.url)}>
@@ -40,55 +42,102 @@
 </div>
 
 <style>
+  /* オーバーレイ背景 */
   .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3); /* 少し濃い背景 */
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
+  /* ダイアログ本体 */
   .inner {
     display: flex;
-    position: relative;
     flex-direction: column;
-    gap: 0.5rem; /* gap-2 相当 */
-    pointer-events: auto;
     position: relative;
-    background-color: white;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px; /* 柔らかい角丸 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    gap: 1rem; /* スペーシング */
   }
 
+  /* タイトル */
+  .title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+    color: #374151; /* グレー700 */
+  }
+
+  /* リスト */
   .list {
     display: flex;
-    gap: 0.25rem; /* gap-1 相当 */
+    flex-direction: column;
+    gap: 0.75rem; /* ゆったりした間隔 */
   }
 
+  /* リストアイテム */
   .item {
     display: flex;
-    width: fit-content;
     align-items: center;
-    justify-content: center;
-    border-radius: 0.375rem; /* rounded-md 相当 */
-    border: 1px solid #6b7280; /* border-neutral-500 相当 */
-    padding: 0.5rem; /* p-2 相当 */
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: #f9fafb; /* グレー100 */
+    border: 1px solid #d1d5db; /* グレー300 */
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: medium;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
+  .item:hover {
+    background-color: #e5e7eb; /* グレー200 */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .item:active {
+    background-color: #d1d5db; /* グレー300 */
+  }
+
+  /* バツボタン */
   .close-button {
     position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f4f6; /* グレー200 */
+    border: none;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    color: #374151; /* グレー700 */
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      transform 0.1s ease;
+  }
 
-    right: 6px;
-    top: 6px;
-    height: 2rem; /* h-8 相当 */
-    width: 2rem; /* w-8 相当 */
-    align-self: flex-end;
-    border-radius: 9999px; /* rounded-full 相当 */
-    background-color: #d1d5db; /* bg-neutral-400 相当 */
+  .close-button:hover {
+    background-color: #e5e7eb; /* グレー300 */
+  }
+
+  .close-button:active {
+    background-color: #d1d5db; /* グレー400 */
+    transform: scale(0.95); /* 押した感覚を演出 */
   }
 </style>
