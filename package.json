@@ -1,5 +1,5 @@
 {
-  "name": "@tsukemonogit/nostr-share-component",
+  "name": "@konemono/nostr-share-component",
   "version": "0.0.11",
   "type": "module",
   "browser": "dist/nostr-share-component.js",
