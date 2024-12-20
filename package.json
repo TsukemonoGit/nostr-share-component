@@ -1,6 +1,6 @@
 {
   "name": "@konemono/nostr-share-component",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "type": "module",
   "browser": "dist/nostr-share-component.js",
   "files": [
