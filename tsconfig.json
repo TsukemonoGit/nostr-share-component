@@ -1,21 +1,22 @@
 {
-  "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
+    "outDir": "dist", // 出力フォルダ
+    "declaration": true, // 型定義ファイルを生成
+    "emitDeclarationOnly": true, // JavaScript の出力を省略して型定義ファイルのみ生成
+    "skipLibCheck": true, // 外部モジュールの型チェックをスキップ
     "module": "ESNext",
-    "resolveJsonModule": true,
-    /**
-     * Typecheck JS in `.svelte` and `.js` files by default.
-     * Disable checkJs if you'd like to use dynamic types in JS.
-     * Note that setting allowJs false does not prevent the use
-     * of JS in `.svelte` files.
-     */
-    "allowJs": true,
-    "checkJs": true,
-    "isolatedModules": true,
-    "moduleDetection": "force"
+    "moduleResolution": "Node",
+    "target": "ESNext",
+    "strict": true, // 厳密な型チェックを有効化
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "types": ["svelte"], // Svelte の型を利用
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"]
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src/**/*"], // 型定義ファイルを生成する対象
+  "exclude": ["node_modules", "dist"] // 除外対象
 }

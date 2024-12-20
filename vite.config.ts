@@ -17,12 +17,6 @@ export default defineConfig({
       },
       formats: ["umd", "es", "iife"], // 出力形式を指定（iifeとumd, esを含めて）
     },
-    rollupOptions: {
-      output: {
-        entryFileNames: "nostr-share-component.js",
-        format: "iife",
-      },
-    },
   },
   plugins: [
     svelte({

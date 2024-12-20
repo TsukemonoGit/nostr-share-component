@@ -1,2 +1,2 @@
-export * from "./lib/Dialog.svelte";
-export * from "./lib/NostrShare.svelte";
+export { default as Dialog } from "./lib/Dialog.svelte";
+export { default as NostrShare } from "./lib/NostrShare.svelte";
