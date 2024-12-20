@@ -1,10 +1,12 @@
 {
   "name": "@konemono/nostr-share-component",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "type": "module",
   "browser": "dist/nostr-share-component.js",
   "files": [
-    "dist"
+    "dist",
+    "!dist/vite.svg",
+    "!dist/index.html"
   ],
   "repository": {
     "type": "git",
