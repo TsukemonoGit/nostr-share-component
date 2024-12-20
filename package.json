@@ -1,6 +1,6 @@
 {
   "name": "@konemono/nostr-share-component",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "main": "dist/nostr-share-component.js",
   "unpkg": "dist/nostr-share-component.js",
@@ -12,6 +12,7 @@
     "type": "git",
     "url": "https://github.com/TsukemonoGit/nostr-share-component.git"
   },
+  "license": "Apache-2.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
