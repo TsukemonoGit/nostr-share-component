@@ -1,10 +1,11 @@
 {
   "name": "@konemono/nostr-share-component",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "type": "module",
   "main": "dist/nostr-share-component.umd.js",
   "module": "dist/nostr-share-component.es.js",
-  "unpkg": "dist/nostr-share-component.js",
+  "unpkg": "dist/nostr-share-component.umd.js",
+  "browser": "dist/nostr-share-component.js",
   "files": [
     "dist"
   ],
