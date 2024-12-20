@@ -24,6 +24,7 @@
   },
   "license": "Apache-2.0",
   "scripts": {
+    "prepare": "npm run build",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
