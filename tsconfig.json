@@ -18,5 +18,5 @@
     }
   },
   "include": ["src/**/*"], // 型定義ファイルを生成する対象
-  "exclude": ["node_modules", "dist"] // 除外対象
+  "exclude": ["node_modules", "dist", "src/main.ts"] // 除外対象
 }
