@@ -10,9 +10,11 @@ https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{version}/dist/nost
 ```
 
 任意の位置に以下のコードを配置
+
 {url}{title}{text}はそれぞれ共有したい文字列に変換
 （なくても良い）
-icon={true}は◯サイズのボタン
+
+icon={true}にすると◯サイズのボタン(なくても良い。defaultはfalse)
 
 
 ```
@@ -20,6 +22,7 @@ icon={true}は◯サイズのボタン
 ```
 
 中に任意のコンテントをいれると共有ボタンがカスタムできる
+
 ```
 <nostr-share class="" url={url} shareTitle={title} text={text} icon={true}>Share on Nostr</nostr-share>
 ```
