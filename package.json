@@ -1,6 +1,6 @@
 {
   "name": "@konemono/nostr-share-component",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "type": "module",
   "main": "dist/nostr-share-component.js",
   "module": "dist/nostr-share-component.es.js",
