@@ -14,7 +14,7 @@ export default defineConfig({
         }
         return `nostr-share-component.${format}.js`;
       },
-      formats: ["umd", "es", "iife"], // 出力形式
+      formats: [/* "umd", "es", */ "iife"], // 出力形式
     },
   },
   plugins: [
