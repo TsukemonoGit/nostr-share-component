@@ -1,7 +1,7 @@
 # nostr-share-component
 
 
-<head>に以下のコードを各。{version}の部分は適切なバージョンに変更してください（e.g. 0.0.10）
+``<head>``に以下のコードを各。{version}の部分は適切なバージョンに変更してください（e.g. 0.0.10）
 
 ```
 <script src="
