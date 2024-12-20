@@ -1,8 +1,18 @@
 {
   "name": "@konemono/nostr-share-component",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "type": "module",
+  "main": "dist/nostr-share-component.js",
+  "module": "dist/nostr-share-component.es.js",
+  "unpkg": "dist/nostr-share-component.js",
   "browser": "dist/nostr-share-component.js",
+  "jsdelivr": "dist/nostr-share-component.js",
+  "exports": {
+    ".": {
+      "require": "./dist/nostr-share-component.js",
+      "import": "./dist/nostr-share-component.es.js"
+    }
+  },
   "files": [
     "dist",
     "!dist/vite.svg",
