@@ -10,11 +10,11 @@ export default defineConfig({
       name: "NostrShare",
       fileName: (format) => {
         if (format === "iife") {
-          return `nostr-share-component.js`; // UMD形式はデフォルトとして扱う
+          return `nostr-share-component.js`; // iife形式の場合のファイル名
         }
-        return `nostr-share-component.${format}.js`;
+        return `nostr-share-component.${format}.js`; // その他形式（es, umd）の場合
       },
-      formats: [/* "umd",  "es",*/ "iife"], // 出力形式
+      formats: ["umd", "es", "iife"], // 出力形式を指定（iifeとumd, esを含めて）
     },
   },
   plugins: [
