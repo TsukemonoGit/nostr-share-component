@@ -29,5 +29,5 @@ buttonType は mini か icon （指定なしだと default）
 中に任意のコンテントをいれると共有ボタンがカスタムできる
 
 ```
-<nostr-share style="" url={url} shareTitle={title} text={text} icon={true}>Share on Nostr</nostr-share>
+<nostr-share style="" url={url} shareTitle={title} text={text} >Share on Nostr</nostr-share>
 ```
