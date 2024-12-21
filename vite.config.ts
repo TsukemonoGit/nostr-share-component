@@ -8,6 +8,13 @@ export default defineConfig(({ mode }) => {
     case "pages": //github actions でpagesをデプロイするときのやつ
       return {
         base: "/nostr-share-component/",
+            plugins: [
+    svelte({
+      compilerOptions: {
+        customElement: true,
+      },
+    }),
+  ],
       };
     default:
          return {
