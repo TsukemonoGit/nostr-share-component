@@ -12,6 +12,11 @@
   let { url = "", text = "", shareTitle = "", handleClose }: Props = $props();
 
   const handleClickList = (clientUrl: string) => {
+    // url, text, shareTitleが空の場合、デフォルト値を設定
+    if (url === "" && text === "" && shareTitle === "") {
+      url = window.location.href; // 現在のページのURLを取得
+      shareTitle = document.title; // 現在のページのタイトルを取得
+    }
     const link = clientUrl
       .replace("{url}", encodeURIComponent(url))
       .replace("{title}", encodeURIComponent(shareTitle))

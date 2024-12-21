@@ -15,6 +15,8 @@ https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{version}/dist/nost
 {url}{title}{text}はそれぞれ共有したい文字列に変換
 （なくても良い）
 
+urlもtitleもtextもない場合は設置したサイトのURLとtitleが共有されます。
+
 icon={true}にすると◯サイズのボタン(なくても良い。defaultはfalse)
 
 
