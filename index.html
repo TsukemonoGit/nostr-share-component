@@ -7,31 +7,134 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite + Svelte + TS</title>
   <style>
-    .custom {
-      font: bold;
-      background-color: aliceblue;
-      border: none
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      background-color: #fff;
+      color: #333;
+      outline: none;
+      transition: all 0.3s ease-in-out;
+    }
+
+    input[type="text"]:focus {
+      border-color: #0078d7;
+      box-shadow: 0 0 5px rgba(0, 120, 215, 0.3);
+    }
+
+    .nostr-share-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 2em;
+    }
+
+
+
+
+
+    .input-container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
 
 <body>
-  <nostr-share url="url" shareTitle="title" text="text" style="
-    font-weight: bold;
-    background-color: rgb(0, 136, 255);
-    color:black;
-    border: none;
-    border-radius: 0;
- ">
-    かすたむ
-  </nostr-share>
+  <h1>Nostr Share Component Demo</h1>
+  <div class="input-container">
+    <div class="form-group">
+      <label for="url">URL:</label>
+      <input type="text" id="url" placeholder="Enter URL" />
+    </div>
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" placeholder="Enter Title" />
+    </div>
+    <div class="form-group">
+      <label for="text">Text:</label>
+      <input type="text" id="text" placeholder="Enter Text" />
+    </div>
+  </div>
 
-  <nostr-share url="url" shareTitle="title" text="text"></nostr-share>
+  <div class="nostr-share-container">
+    <!-- nostr-share elements -->
+    <nostr-share url="" shareTitle="" text="" style="
+      font-weight: bold;
+      color: white;
+      background-color: rgb(0, 136, 255);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      display: inline-block;
+      transition: background-color 0.3s ease; 
+      ">
+      カスタム
+    </nostr-share>
+    <nostr-share url="" shareTitle="" text=""></nostr-share>
+    <nostr-share url="" shareTitle="" text="" icon="true"></nostr-share>
+    <nostr-share url="" shareTitle="" text=""></nostr-share>
+  </div>
 
-  <nostr-share url="url" shareTitle="title" text="text" icon={true}></nostr-share>
-
-  <nostr-share url="url" shareTitle="title" text="text"></nostr-share>
   <script type="module" src="/src/main.ts"></script>
+
+  <script>
+    // Select input fields
+    const urlInput = document.getElementById("url");
+    const titleInput = document.getElementById("title");
+    const textInput = document.getElementById("text");
+
+    // Select all nostr-share elements
+    const nostrShares = document.querySelectorAll("nostr-share");
+
+    // Function to update attributes dynamically
+    const updateAttributes = () => {
+      const url = urlInput.value || "";
+      const title = titleInput.value || "";
+      const text = textInput.value || "";
+
+      nostrShares.forEach((element) => {
+        element.setAttribute("url", url);
+        element.setAttribute("shareTitle", title);
+        element.setAttribute("text", text);
+      });
+    };
+
+    // Add event listeners to input fields
+    urlInput.addEventListener("input", updateAttributes);
+    titleInput.addEventListener("input", updateAttributes);
+    textInput.addEventListener("input", updateAttributes);
+  </script>
 </body>
 
 </html>
