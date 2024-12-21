@@ -1,5 +1,6 @@
-# nostr-share-component
 
+# nostr-share-component
+[![](https://data.jsdelivr.com/v1/package/npm/@konemono/nostr-share-component/badge)](https://www.jsdelivr.com/package/npm/@konemono/nostr-share-component)
 
 ``<head>``に以下のコードを各。{version}の部分は適切なバージョンに変更してください（e.g. 0.0.10）
 
