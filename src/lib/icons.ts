@@ -1,5 +1,5 @@
 //[nostr-logo](https://github.com/mbarulli/nostr-logo) licensed under CC0
-export const nostrIcon = `<svg
+export const nostrIcon = `<svg class="nostr-icon" 
 version="1.1"
 id="_8"
 xmlns="http://www.w3.org/2000/svg"

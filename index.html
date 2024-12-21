@@ -6,10 +6,25 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite + Svelte + TS</title>
+  <style>
+    .custom {
+      font: bold;
+      background-color: aliceblue;
+      border: none
+    }
+  </style>
 </head>
 
 <body>
-  <nostr-share url="url" shareTitle="title" text="text">かすたむ</nostr-share>
+  <nostr-share url="url" shareTitle="title" text="text" style="
+    font-weight: bold;
+    background-color: rgb(0, 136, 255);
+    color:black;
+    border: none;
+    border-radius: 0;
+ ">
+    かすたむ
+  </nostr-share>
 
   <nostr-share url="url" shareTitle="title" text="text"></nostr-share>
 

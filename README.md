@@ -18,11 +18,11 @@ icon={true}にすると◯サイズのボタン(なくても良い。defaultはf
 
 
 ```
-<nostr-share url={url} shareTitle={title} text={text} icon={true} class=""></nostr-share>
+<nostr-share url={url} shareTitle={title} text={text} icon={true} ></nostr-share>
 ```
 
 中に任意のコンテントをいれると共有ボタンがカスタムできる
 
 ```
-<nostr-share class="" url={url} shareTitle={title} text={text} icon={true}>Share on Nostr</nostr-share>
+<nostr-share style="" url={url} shareTitle={title} text={text} icon={true}>Share on Nostr</nostr-share>
 ```

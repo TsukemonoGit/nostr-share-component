@@ -60,7 +60,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    background-color: #ffffff;
+    background-color: var(--bg-color);
     padding: 1.5rem;
     border-radius: 12px; /* 柔らかい角丸 */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -75,27 +75,30 @@
     font-size: 1.25rem;
     font-weight: bold;
     text-align: center;
-    color: #374151; /* グレー700 */
+    color: var(--text-color-main); /* グレー700 */
   }
 
   /* リスト */
   .list {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 0.75rem; /* ゆったりした間隔 */
   }
 
   /* リストアイテム */
   .item {
+    color: var(--button2-text-color);
     display: flex;
+    width: 120px;
+    justify-content: center;
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1rem;
-    background-color: #f9fafb; /* グレー100 */
-    border: 1px solid #d1d5db; /* グレー300 */
+    background-color: var(--button2-bg-color); /* グレー100 */
+    border: 1px solid var(--border-color); /* グレー300 */
     border-radius: 8px;
     font-size: 1rem;
-    font-weight: medium;
     cursor: pointer;
     transition:
       background-color 0.2s ease,
@@ -103,12 +106,12 @@
   }
 
   .item:hover {
-    background-color: #e5e7eb; /* グレー200 */
+    background-color: var(--button2-hover-color); /* グレー200 */
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
 
   .item:active {
-    background-color: #d1d5db; /* グレー300 */
+    background-color: var(--button2-active-color); /* グレー300 */
   }
 
   /* バツボタン */
@@ -121,11 +124,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f3f4f6; /* グレー200 */
+    background-color: var(--button2-bg-color); /* グレー200 */
     border: none;
     border-radius: 50%;
     font-size: 1.25rem;
-    color: #374151; /* グレー700 */
+    color: var(--button2-text-color); /* グレー700 */
     cursor: pointer;
     transition:
       background-color 0.2s ease,
@@ -133,11 +136,11 @@
   }
 
   .close-button:hover {
-    background-color: #e5e7eb; /* グレー300 */
+    background-color: var(--button2-hover-color); /* グレー300 */
   }
 
   .close-button:active {
-    background-color: #d1d5db; /* グレー400 */
+    background-color: var(--button2-active-color); /* グレー400 */
     transform: scale(0.95); /* 押した感覚を演出 */
   }
 </style>
