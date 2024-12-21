@@ -1,7 +1,7 @@
 export const list = [
   {
     name: "nostter",
-    url: "https://nostter.app/post?content={text}&url={url}&title={title}",
+    url: "https://nostter.app/post?text={text}&url={url}&title={title}",
     icon: "https://nostter.app/favicon.ico",
   },
   {
