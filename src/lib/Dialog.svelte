@@ -17,31 +17,31 @@
       .replace("{title}", encodeURIComponent(shareTitle))
       .replace("{text}", encodeURIComponent(text));
 
-    const shareUrl = generateShareUrl(link);
+    // const shareUrl = generateShareUrl(link);
 
-    console.log(shareUrl);
-    window.open(shareUrl, "_blank", "noreferrer");
+    console.log(link);
+    window.open(link, "_blank", "noreferrer");
     handleClose();
   };
 
-  function generateShareUrl(clientUrl: string) {
-    const urlObj = new URL(clientUrl); // URLを解析するためにURLオブジェクトを作成
-    const searchParams = new URLSearchParams(urlObj.search); // クエリパラメータを取得
-    console.log(searchParams);
+  // function generateShareUrl(clientUrl: string) {
+  //   const urlObj = new URL(clientUrl); // URLを解析するためにURLオブジェクトを作成
+  //   const searchParams = new URLSearchParams(urlObj.search); // クエリパラメータを取得
+  //   console.log(searchParams);
 
-    // 各パラメータを設定
-    searchParams.forEach((value, key) => {
-      // 空やundefinedの値の場合、削除
-      if (!value || value.trim() === "") {
-        searchParams.delete(key); // 空の場合は削除
-      }
-    });
+  //   // 各パラメータを設定
+  //   searchParams.forEach((value, key) => {
+  //     // 空やundefinedの値の場合、削除
+  //     if (!value || value.trim() === "") {
+  //       searchParams.delete(key); // 空の場合は削除
+  //     }
+  //   });
 
-    // 修正されたクエリパラメータをURLに反映
-    urlObj.search = searchParams.toString();
+  //   // 修正されたクエリパラメータをURLに反映
+  //   urlObj.search = searchParams.toString();
 
-    return urlObj.toString(); // 新しいURLを返す
-  }
+  //   return urlObj.toString(); // 新しいURLを返す
+  // }
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
