@@ -12,7 +12,7 @@
     }
   },
   "types": "dist/main.d.ts",
-  "files": ["src",
+  "files": [
     "dist",
     "!dist/vite.svg",
     "!dist/index.html"
