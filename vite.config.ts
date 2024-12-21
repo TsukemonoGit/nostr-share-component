@@ -3,7 +3,14 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 
 // https://vite.dev/config/
 //https://zenn.dev/eringiv3/articles/225e9bc2c92ff1
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+    switch (mode) {
+    case "pages": //github actions でpagesをデプロイするときのやつ
+      return {
+        base: "/nostr-share-component/",
+      };
+    default:
+         return {
   base: "./",
   build: {
     lib: {
@@ -24,5 +31,5 @@ export default defineConfig({
         customElement: true,
       },
     }),
-  ],
+  ],}}
 });
