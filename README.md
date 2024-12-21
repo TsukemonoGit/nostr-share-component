@@ -17,8 +17,6 @@ https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{version}/dist/nost
 
 urlもtitleもtextもない場合は設置したサイトのURLとtitleが共有されます。
 
-icon={true}にすると◯サイズのボタン(なくても良い。defaultはfalse)
-
 
 ```
 <nostr-share data-url={url} data-title={title} data-text={text} data-type={buttonType} ></nostr-share>
@@ -29,5 +27,5 @@ buttonType は mini か icon （指定なしだと default）
 中に任意のコンテントをいれると共有ボタンがカスタムできる
 
 ```
-<nostr-share style="" url={url} shareTitle={title} text={text} >Share on Nostr</nostr-share>
+<nostr-share style="" data-url={url} data-title={title} data-text={text} >Share on Nostr</nostr-share>
 ```

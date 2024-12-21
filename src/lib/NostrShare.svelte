@@ -64,7 +64,7 @@
     --text-color-main: #2e2e2e;
 
     --button1-text-color: #662482;
-    --button1-bg-color: #e2e2e2;
+    --button1-bg-color: #ececec;
     --button1-hover-color: #b1b1b1;
     --button1-border-color: #b9b9b9;
 

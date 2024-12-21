@@ -7,11 +7,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nostr Share Button Demo</title>
   <style>
+    :root {
+      color: #2e2e2e;
+      --bg-color: #ffffff;
+
+      --label-color: #555;
+
+      --input-bg-color: #fff;
+      --input-text-color: #333;
+      --input-border-color: #ddd;
+      --input-focus-border-color: #0078d7;
+      --input-focus-shadow-color: rgba(0, 120, 215, 0.3);
+
+      --input-container-bg-color: #fff;
+      --input-container-box-shadow: rgba(0, 0, 0, 0.1);
+
+      --pre-bg-color: #f5f5f5;
+      --pre-border-color: #ddd;
+      --code-bg-color: #f0f0f0;
+      --code-text-color: #c7254e;
+    }
+
+    /* ダークモード */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #333333;
+        color: #ffffff;
+
+        --label-color: #c9c9c9;
+
+        --input-bg-color: #444;
+        --input-text-color: #eee;
+        --input-border-color: #555;
+        --input-focus-border-color: #00aaff;
+        --input-focus-shadow-color: rgba(0, 170, 255, 0.3);
+
+        --input-container-bg-color: #444;
+        --input-container-box-shadow: rgba(0, 0, 0, 0.2);
+
+        --pre-bg-color: #444;
+        --pre-border-color: #555;
+        --code-bg-color: #555;
+        --code-text-color: #00d1ff;
+      }
+    }
+
     body {
       font-family: Arial, sans-serif;
       background-color: var(--bg-color);
-      margin: 0;
-      padding: 20px;
+
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0.5em;
     }
 
     h1 {
@@ -48,15 +95,19 @@
       box-shadow: 0 0 5px var(--input-focus-shadow-color);
     }
 
+
+
     .nostr-share-container {
+
       display: flex;
       justify-content: center;
       align-items: center;
       margin-top: 2em;
+      margin-bottom: 2em;
     }
 
     .input-container {
-      max-width: 500px;
+
       margin: 0 auto;
       padding: 20px;
       background: var(--input-container-bg-color);
@@ -64,132 +115,265 @@
       box-shadow: 0 2px 5px var(--input-container-box-shadow);
     }
 
-    :root {
-      color: #2e2e2e;
-      --bg-color: #ffffff;
+    .nostr-share-items {
 
-      --label-color: #555;
-
-      --input-bg-color: #fff;
-      --input-text-color: #333;
-      --input-border-color: #ddd;
-      --input-focus-border-color: #0078d7;
-      --input-focus-shadow-color: rgba(0, 120, 215, 0.3);
-
-      --input-container-bg-color: #fff;
-      --input-container-box-shadow: rgba(0, 0, 0, 0.1);
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* ダークモード */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-color: #333333;
-        color: #ffffff;
-
-        --label-color: #c9c9c9;
-
-        --input-bg-color: #444;
-        --input-text-color: #eee;
-        --input-border-color: #555;
-        --input-focus-border-color: #00aaff;
-        --input-focus-shadow-color: rgba(0, 170, 255, 0.3);
-
-        --input-container-bg-color: #444;
-        --input-container-box-shadow: rgba(0, 0, 0, 0.2);
-      }
-    }
-
-    .grid {
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      align-items: center;
-    }
 
     .grid-item {
-
+      gap: 4px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1.5fr;
       align-items: center;
+    }
+
+
+
+    /* 全体のコンテナスタイル */
+    .usage-container {
+
+      margin: 0 auto;
+      font-family: Arial, sans-serif;
+      color: var(--text-color);
+    }
+
+    /* タイトルスタイル */
+    .usage-container h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: var(--text-color);
+    }
+
+    /* 段落スタイル */
+    .usage-container p {
+      margin-bottom: 10px;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .usage-container pre,
+    .grid-item pre {
+      background-color: var(--pre-bg-color);
+      border: 1px solid var(--pre-border-color);
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px 0;
+
+      font-size: 0.9rem;
+      line-height: 1.4;
+
+      word-wrap: break-word;
+      white-space: pre-line;
+
+    }
+
+    .grid-item pre {
+      max-height: 2em;
+      overflow-y: auto;
+    }
+
+    /* codeスタイル */
+    .usage-container code {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: var(--code-bg-color);
+      color: var(--code-text-color);
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    .attributes-container {
+      padding: 6px;
+      font-family: Arial, sans-serif;
+      color: var(--text-color-main);
+      border: 1px solid var(--pre-border-color);
+      border-radius: 1rem;
+    }
+
+
+
+    .attributes-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .attributes-list li {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+
+
+    .attributes-list span {
+      display: block;
+      margin-left: 20px;
+      /* 左に空白を追加 */
+      color: var(--text-color-secondary);
+      font-size: 0.95rem;
+    }
+
+    .attributes-note {
+      padding: 4px;
+      border-bottom: 1px solid var(--pre-border-color);
+
     }
   </style>
 </head>
 
 <body>
-  <h1>Nostr Share Component Demo</h1>
-  <div class="input-container">
-    <div class="form-group">
-      <label for="url">URL:</label>
-      <input type="text" id="url" placeholder="Enter URL" />
-    </div>
-    <div class="form-group">
-      <label for="title">Title:</label>
-      <input type="text" id="title" placeholder="Enter Title" />
-    </div>
-    <div class="form-group">
-      <label for="text">Text:</label>
-      <input type="text" id="text" placeholder="Enter Text" />
-    </div>
-  </div>
+  <h1>Nostr Share Component</h1>
 
-  <div class="nostr-share-container">
-    <!-- nostr-share elements -->
-    <div class="grid">
-      <div class="grid-item">
-        <div>custom style</div><nostr-share data-url="" data-title="" data-text="" style="
-      font-weight: bold;
-      color: white;
-      background-color: rgb(0, 136, 255);
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-align: center;
-      display: inline-block;
-      transition: background-color 0.3s ease; 
-      ">
-          カスタム
-        </nostr-share>
-      </div>
-      <div class="grid-item">
-        <div>default</div><nostr-share data-url="" data-title="" data-text=""></nostr-share>
-      </div>
-      <div class="grid-item">
-        <div>type icon</div><nostr-share data-url="" data-title="" data-text="" data-type="icon"></nostr-share>
-      </div>
-      <div class="grid-item">
-        <div>type mini</div><nostr-share data-url="" data-title="" data-text="" data-type="mini"></nostr-share>
-      </div>
+  <div class="usage-container">
+    <h3>Usage</h3>
+    <p>In the <code>&lt;head&gt;</code> tag<br>Note that you need to change the {VERSION} part as appropriate (e.g.
+      0.1.2).</p>
+    <pre>
+      &lt;script src="https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{VERSION}/dist/nostr-share-component.min.js
+"&gt;&lt;/script&gt;
+    </pre>
+    <p>In the <code>&lt;body&gt;</code> tag</p>
+    <pre>
+      &lt;nostr-share&gt;&lt;/nostr-share&gt;
+
+    </pre>
+
+    <h3>Attributes</h3>
+    <div class="attributes-container">
+
+      <ul class="attributes-list">
+        <li>
+          <strong>data-title:</strong>
+          <span>Share title.</span>
+        </li>
+        <li>
+          <strong>data-url:</strong>
+          <span>Share URL.</span>
+        </li>
+        <li>
+          <strong>data-text:</strong>
+          <span>Share text.</span>
+        </li>
+      </ul>
+      <p class="attributes-note">
+        If all three of the above are empty, the title and URL of the current site will be shared.
+      </p>
+      <ul class="attributes-list">
+        <li>
+          <strong>data-type:</strong>
+          <span>Can be one of <code>default</code>, <code>icon</code>, or <code>mini</code>. This changes the button
+            style
+            as shown in the example.</span>
+        </li>
       </ul>
     </div>
 
-    <script type="module" src="/src/main.ts"></script>
 
-    <script>
-      // Select input fields
-      const urlInput = document.getElementById("url");
-      const titleInput = document.getElementById("title");
-      const textInput = document.getElementById("text");
+    <h3>Demo</h3>
 
-      // Select all nostr-share elements
-      const nostrShares = document.querySelectorAll("nostr-share");
 
-      // Function to update attributes dynamically
-      const updateAttributes = () => {
-        const url = urlInput.value || "";
-        const title = titleInput.value || "";
-        const text = textInput.value || "";
 
-        nostrShares.forEach((element) => {
-          element.setAttribute("data-url", url);
-          element.setAttribute("data-title", title);
-          element.setAttribute("data-text", text);
-        });
-      };
+    <div class="nostr-share-container">
+      <!-- nostr-share elements -->
+      <div class="nostr-share-items">
+        <div class="grid-item">
+          <div>default</div><nostr-share></nostr-share>
+          <pre>&lt;nostr-share&gt;&lt;/nostr-share&gt;</pre>
+        </div>
 
-      // Add event listeners to input fields
-      urlInput.addEventListener("input", updateAttributes);
-      titleInput.addEventListener("input", updateAttributes);
-      textInput.addEventListener("input", updateAttributes);
-    </script>
+
+
+        <div class="grid-item">
+          <div>type icon</div><nostr-share data-type="icon" data-url="" data-title="" data-text=""></nostr-share>
+          <pre>
+            &lt;nostr-share data-type="icon" data-url="" data-title="" data-text="" &gt;&lt;/nostr-share&gt;
+          </pre>
+        </div>
+
+        <div class="grid-item">
+          <div>type mini</div><nostr-share data-type="mini" data-url="" data-title="" data-text=""></nostr-share>
+          <pre>&lt;nostr-share data-type="mini" data-url="" data-title="" data-text="" &gt;&lt;/nostr-share&gt;</pre>
+        </div>
+        <div class="grid-item">
+          <div>custom style</div><nostr-share data-url="" data-title="" data-text="" style="
+        font-weight: bold;
+        color: white;
+        background-color: rgb(0, 136, 255);
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        display: inline-block;
+        transition: background-color 0.3s ease; 
+        ">
+            カスタム
+          </nostr-share>
+          <pre>
+            &lt;nostr-share data-url="" data-title="" data-text="" style="
+          font-weight: bold;
+          color: white;
+          background-color: rgb(0, 136, 255);
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          text-align: center;
+          display: inline-block;
+          transition: background-color 0.3s ease; 
+          "&gt;
+              カスタム
+            &lt;/nostr-share&gt;
+          </pre>
+        </div>
+
+        </ul>
+      </div>
+    </div>
+    <div class="input-container">
+      <div class="form-group">
+        <label for="url">data-url:</label>
+        <input type="text" id="url" placeholder="Enter URL" />
+      </div>
+      <div class="form-group">
+        <label for="title">data-title:</label>
+        <input type="text" id="title" placeholder="Enter Title" />
+      </div>
+      <div class="form-group">
+        <label for="text">data-text:</label>
+        <input type="text" id="text" placeholder="Enter Text" />
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+
+  <script>
+    // Select input fields
+    const urlInput = document.getElementById("url");
+    const titleInput = document.getElementById("title");
+    const textInput = document.getElementById("text");
+
+    // Select all nostr-share elements
+    const nostrShares = document.querySelectorAll("nostr-share");
+
+    // Function to update attributes dynamically
+    const updateAttributes = () => {
+      const url = urlInput.value || "";
+      const title = titleInput.value || "";
+      const text = textInput.value || "";
+
+      nostrShares.forEach((element) => {
+        element.setAttribute("data-url", url);
+        element.setAttribute("data-title", title);
+        element.setAttribute("data-text", text);
+      });
+    };
+
+    // Add event listeners to input fields
+    urlInput.addEventListener("input", updateAttributes);
+    titleInput.addEventListener("input", updateAttributes);
+    textInput.addEventListener("input", updateAttributes);
+  </script>
 </body>
 
 </html>
