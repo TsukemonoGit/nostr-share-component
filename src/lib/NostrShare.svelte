@@ -97,13 +97,14 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
-    --text-color-main: #374151;
+    --text-color-main: #2e2e2e;
 
     --button1-text-color: #662482;
-    --button1-bg-color: #f3f4f6;
-    --button1-hover-color: #313131;
+    --button1-bg-color: #e2e2e2;
+    --button1-hover-color: #b1b1b1;
+    --button1-border-color: #b9b9b9;
 
-    --button2-text-color: rgb(211, 211, 211);
+    --button2-text-color: rgb(73, 73, 73);
     --button2-bg-color: #f3f4f6;
     --button2-hover-color: #e5e7eb;
 
@@ -118,6 +119,7 @@
       --button1-text-color: #eec5ff;
       --button1-bg-color: #363636;
       --button1-hover-color: #555555;
+      --button1-border-color: #555555;
 
       --button2-text-color: #f1f1f1;
       --button2-bg-color: #1f1f1f;
@@ -135,8 +137,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none;
-    outline: none;
+    border: 1px solid var(--button1-border-color);
+
     cursor: pointer;
     transition: all 0.2s ease-in-out;
   }

@@ -17,7 +17,7 @@
       .replace("{title}", encodeURIComponent(shareTitle))
       .replace("{text}", encodeURIComponent(text));
 
-    // const shareUrl = generateShareUrl(link);
+    // const shareUrl = generateShareUrl(link); //とりあえずlumilumiとnostterはこれしなくてもよさげだからとりあえずしなくていいかのやつ（要素が空のパラメーターを削除）
 
     console.log(link);
     window.open(link, "_blank", "noreferrer");

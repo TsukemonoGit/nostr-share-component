@@ -9,14 +9,14 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
+      background-color: var(--bg-color);
       margin: 0;
       padding: 20px;
     }
 
     h1 {
       text-align: center;
-      color: #333;
+      color: var(--text-color-main);
     }
 
     .form-group {
@@ -29,42 +29,74 @@
     label {
       font-size: 14px;
       font-weight: bold;
-      color: #555;
+      color: var(--label-color);
     }
 
     input[type="text"] {
       padding: 10px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--input-border-color);
       border-radius: 4px;
       font-size: 14px;
-      background-color: #fff;
-      color: #333;
+      background-color: var(--input-bg-color);
+      color: var(--input-text-color);
       outline: none;
       transition: all 0.3s ease-in-out;
     }
 
     input[type="text"]:focus {
-      border-color: #0078d7;
-      box-shadow: 0 0 5px rgba(0, 120, 215, 0.3);
+      border-color: var(--input-focus-border-color);
+      box-shadow: 0 0 5px var(--input-focus-shadow-color);
     }
 
     .nostr-share-container {
       display: flex;
       justify-content: center;
+      align-items: center;
       margin-top: 2em;
     }
-
-
-
-
 
     .input-container {
       max-width: 500px;
       margin: 0 auto;
       padding: 20px;
-      background: #fff;
+      background: var(--input-container-bg-color);
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 5px var(--input-container-box-shadow);
+    }
+
+    :root {
+      --text-color-main: #2e2e2e;
+      --bg-color: #ffffff;
+
+      --label-color: #555;
+
+      --input-bg-color: #fff;
+      --input-text-color: #333;
+      --input-border-color: #ddd;
+      --input-focus-border-color: #0078d7;
+      --input-focus-shadow-color: rgba(0, 120, 215, 0.3);
+
+      --input-container-bg-color: #fff;
+      --input-container-box-shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    /* ダークモード */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #333333;
+        --text-color-main: #ffffff;
+
+        --label-color: #c9c9c9;
+
+        --input-bg-color: #444;
+        --input-text-color: #eee;
+        --input-border-color: #555;
+        --input-focus-border-color: #00aaff;
+        --input-focus-shadow-color: rgba(0, 170, 255, 0.3);
+
+        --input-container-bg-color: #444;
+        --input-container-box-shadow: rgba(0, 0, 0, 0.2);
+      }
     }
   </style>
 </head>
