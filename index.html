@@ -65,7 +65,7 @@
     }
 
     :root {
-      --text-color-main: #2e2e2e;
+      color: #2e2e2e;
       --bg-color: #ffffff;
 
       --label-color: #555;
@@ -84,7 +84,7 @@
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-color: #333333;
-        --text-color-main: #ffffff;
+        color: #ffffff;
 
         --label-color: #c9c9c9;
 
@@ -97,6 +97,19 @@
         --input-container-bg-color: #444;
         --input-container-box-shadow: rgba(0, 0, 0, 0.2);
       }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      align-items: center;
+    }
+
+    .grid-item {
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
     }
   </style>
 </head>
@@ -120,7 +133,9 @@
 
   <div class="nostr-share-container">
     <!-- nostr-share elements -->
-    <nostr-share url="" shareTitle="" text="" style="
+    <div class="grid">
+      <div class="grid-item">
+        <div>custom style</div><nostr-share data-url="" data-title="" data-text="" style="
       font-weight: bold;
       color: white;
       background-color: rgb(0, 136, 255);
@@ -131,42 +146,50 @@
       display: inline-block;
       transition: background-color 0.3s ease; 
       ">
-      カスタム
-    </nostr-share>
-    <nostr-share url="" shareTitle="" text=""></nostr-share>
-    <nostr-share url="" shareTitle="" text="" icon="true"></nostr-share>
-    <nostr-share url="" shareTitle="" text=""></nostr-share>
-  </div>
+          カスタム
+        </nostr-share>
+      </div>
+      <div class="grid-item">
+        <div>default</div><nostr-share data-url="" data-title="" data-text=""></nostr-share>
+      </div>
+      <div class="grid-item">
+        <div>type icon</div><nostr-share data-url="" data-title="" data-text="" data-type="icon"></nostr-share>
+      </div>
+      <div class="grid-item">
+        <div>type mini</div><nostr-share data-url="" data-title="" data-text="" data-type="mini"></nostr-share>
+      </div>
+      </ul>
+    </div>
 
-  <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/main.ts"></script>
 
-  <script>
-    // Select input fields
-    const urlInput = document.getElementById("url");
-    const titleInput = document.getElementById("title");
-    const textInput = document.getElementById("text");
+    <script>
+      // Select input fields
+      const urlInput = document.getElementById("url");
+      const titleInput = document.getElementById("title");
+      const textInput = document.getElementById("text");
 
-    // Select all nostr-share elements
-    const nostrShares = document.querySelectorAll("nostr-share");
+      // Select all nostr-share elements
+      const nostrShares = document.querySelectorAll("nostr-share");
 
-    // Function to update attributes dynamically
-    const updateAttributes = () => {
-      const url = urlInput.value || "";
-      const title = titleInput.value || "";
-      const text = textInput.value || "";
+      // Function to update attributes dynamically
+      const updateAttributes = () => {
+        const url = urlInput.value || "";
+        const title = titleInput.value || "";
+        const text = textInput.value || "";
 
-      nostrShares.forEach((element) => {
-        element.setAttribute("url", url);
-        element.setAttribute("shareTitle", title);
-        element.setAttribute("text", text);
-      });
-    };
+        nostrShares.forEach((element) => {
+          element.setAttribute("data-url", url);
+          element.setAttribute("data-title", title);
+          element.setAttribute("data-text", text);
+        });
+      };
 
-    // Add event listeners to input fields
-    urlInput.addEventListener("input", updateAttributes);
-    titleInput.addEventListener("input", updateAttributes);
-    textInput.addEventListener("input", updateAttributes);
-  </script>
+      // Add event listeners to input fields
+      urlInput.addEventListener("input", updateAttributes);
+      titleInput.addEventListener("input", updateAttributes);
+      textInput.addEventListener("input", updateAttributes);
+    </script>
 </body>
 
 </html>

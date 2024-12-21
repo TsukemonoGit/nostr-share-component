@@ -21,8 +21,10 @@ icon={true}にすると◯サイズのボタン(なくても良い。defaultはf
 
 
 ```
-<nostr-share url={url} shareTitle={title} text={text} icon={true} ></nostr-share>
+<nostr-share data-url={url} data-title={title} data-text={text} data-type={buttonType} ></nostr-share>
 ```
+
+buttonType は mini か icon （指定なしだと default）
 
 中に任意のコンテントをいれると共有ボタンがカスタムできる
 
