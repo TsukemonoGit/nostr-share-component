@@ -6,8 +6,8 @@ export const list = [
   },
   {
     name: "lumilumi",
-    url: "https://lumilumi.vercel.app/post?url={url}&text={text}&title={title}",
-    icon: "https://lumilumi.vercel.app/favicon.ico",
+    url: "https://lumilumi.app/post?url={url}&text={text}&title={title}",
+    icon: "https://lumilumi.app/favicon.ico",
   },
   // // Androidアプリ例
   // {

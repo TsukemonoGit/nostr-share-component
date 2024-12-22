@@ -156,7 +156,7 @@
 
   /* miniスタイル */
   .nostrShare-mini {
-    padding: 4px 6px;
+    padding: 2px 6px;
     margin: 2px;
 
     border-radius: 8px;

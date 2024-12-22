@@ -11,6 +11,19 @@
   }
   let { url = "", text = "", shareTitle = "", handleClose }: Props = $props();
 
+  //   // アクセス元のデバイス情報を取得
+  //  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  // // Androidの判定
+  // if (/android/i.test(userAgent)) {
+  //     list.push(androidList);
+  //   }
+
+  //   // iOSの判定
+  //   if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+  //     list.push(iosList);
+  //   }
+
   const handleClickList = (clientUrl: string) => {
     // url, text, shareTitleが空の場合、デフォルト値を設定
     if (url === "" && text === "" && shareTitle === "") {
