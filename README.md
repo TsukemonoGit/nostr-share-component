@@ -1,31 +1,45 @@
 
+[EN](./README-EN.md)
 # nostr-share-component
 [![](https://data.jsdelivr.com/v1/package/npm/@konemono/nostr-share-component/badge)](https://www.jsdelivr.com/package/npm/@konemono/nostr-share-component)
 
-``<head>``に以下のコードを各。{version}の部分は適切なバージョンに変更してください（e.g. 0.0.10）
+### 1. `<head>`に以下のコードを挿入
+   バージョン部分 `{version}` を適切なバージョン（例: `0.0.10`）に置き換えてください。
+
+   ```html
+   <script src="
+   https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{version}/dist/nostr-share-component.min.js
+   "></script>
+   ```
+
+### 2. 任意の位置に以下のコードを配置
 
 ```
-<script src="
-https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{version}/dist/nostr-share-component.min.js
-"></script>
+<nostr-share></nostr-share>
 ```
 
-任意の位置に以下のコードを配置
-
-{url}{title}{text}はそれぞれ共有したい文字列に変換
-（なくても良い）
-
-urlもtitleもtextもない場合は設置したサイトのURLとtitleが共有されます。
+- data-url、data-title、data-text にそれぞれ共有したい文字列を指定することができます。
+- url、title、text が指定されていない場合、設置したサイトのURLとタイトルが共有されます。
 
 
+例:
 ```
-<nostr-share data-url={url} data-title={title} data-text={text} data-type={buttonType} ></nostr-share>
+<nostr-share data-url="https://example.com" data-title="Example Title" data-text="Example Text"></nostr-share>
 ```
 
-buttonType は mini か icon （指定なしだと default）
 
-中に任意のコンテントをいれると共有ボタンがカスタムできる
+### 3. ボタンの種類を指定（任意）
+data-type に以下の値を指定できます：
+- mini
+- icon
+- 指定なしの場合は default になります。
+
+
+### 4. カスタム共有ボタンを作成 
+コンポーネント内に任意のコンテンツを挿入することで、共有ボタンをカスタマイズできます。
 
 ```
-<nostr-share style="" data-url={url} data-title={title} data-text={text} >Share on Nostr</nostr-share>
+<nostr-share style="" data-url="https://example.com" data-title="Example Title" data-text="Example Text">
+    Share on Nostr
+</nostr-share>
 ```
