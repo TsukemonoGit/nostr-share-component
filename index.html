@@ -28,8 +28,7 @@
       --pre-border-color: #ddd;
       --code-bg-color: #f0f0f0;
       --code-text-color: #c7254e;
-      --text-color-link: #0011ff;
-      --text-color-link-hover: #5e69ff;
+
     }
 
     /* ダークモード */
@@ -53,8 +52,7 @@
         --pre-border-color: #555;
         --code-bg-color: #555;
         --code-text-color: #00d1ff;
-        --text-color-link: #b0b6ff;
-        --text-color-link-hover: #bfd3ff;
+
       }
     }
 
@@ -244,16 +242,6 @@
 
       width: 24px;
     }
-
-    .link {
-      color: var(--text-color-link);
-      word-break: break-all;
-
-    }
-
-    .link:hover {
-      color: var(--text-color-link-hover);
-    }
   </style>
 </head>
 
@@ -268,9 +256,12 @@
 
     <p>In the <code>&lt;head&gt;</code> tag<br>Note that you need to change the {VERSION} part as appropriate (e.g.
       0.1.2).</p>
-    <p>Please check the version information here: <a class="link" title="nostr-share-component" target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.jsdelivr.com/package/npm/@konemono/nostr-share-component">https://www.jsdelivr.com/package/npm/@konemono/nostr-share-component</a>
+    <p>Please check the version
+      information here:
+      <a title="nostr-share-component" target="_blank" rel="noopener noreferrer"
+        style="display:inline-flex; vertical-align: text-bottom;"
+        href="https://www.jsdelivr.com/package/npm/@konemono/nostr-share-component"><img alt="badge"
+          src="https://data.jsdelivr.com/v1/package/npm/@konemono/nostr-share-component/badge" /></a>
     </p>
     <pre>
       &lt;script src="https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{VERSION}/dist/nostr-share-component.min.js
