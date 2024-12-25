@@ -66,6 +66,7 @@
     h1 {
       text-align: center;
       color: var(--text-color-main);
+      margin: auto;
     }
 
     footer {
@@ -112,16 +113,15 @@
 
 
     .nostr-share-container {
-
+      margin: 1em 1em;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 2em;
-      margin-bottom: 2em;
+
     }
 
     .input-container {
-
+      margin-top: 0.5rem;
       padding: 12px;
       background: var(--input-container-bg-color);
       border-radius: 8px;
@@ -148,13 +148,14 @@
     /* 全体のコンテナスタイル */
     .usage-container {
 
-      margin: 0 auto;
+      margin: 0 1em;
       font-family: Arial, sans-serif;
       color: var(--text-color);
     }
 
     /* タイトルスタイル */
-    .usage-container h3 {
+    h3 {
+      margin-top: 4rem;
       font-size: 1.5rem;
       margin-bottom: 10px;
       color: var(--text-color);
@@ -198,6 +199,7 @@
     }
 
     .attributes-container {
+      margin: 0 1em;
       padding: 6px 12px;
       font-family: Arial, sans-serif;
       color: var(--text-color-main);
@@ -247,9 +249,9 @@
 
   <h1>Nostr Share Component</h1>
 
-
+  <h3>Usage</h3>
   <div class="usage-container">
-    <h3>Usage</h3>
+
     <p>In the <code>&lt;head&gt;</code> tag<br>Note that you need to change the {VERSION} part as appropriate (e.g.
       0.1.2).</p>
     <pre>
@@ -261,65 +263,83 @@
       &lt;nostr-share&gt;&lt;/nostr-share&gt;
 
     </pre>
+  </div>
+  <h3>Attributes</h3>
+  <div class="attributes-container">
 
-    <h3>Attributes</h3>
-    <div class="attributes-container">
+    <ul class="attributes-list">
+      <li>
+        <strong>data-title:</strong>
+        <span>Share title.</span>
+      </li>
+      <li>
+        <strong>data-url:</strong>
+        <span>Share URL.</span>
+      </li>
+      <li>
+        <strong>data-text:</strong>
+        <span>Share text.</span>
+      </li>
+    </ul>
+    <p class="attributes-note">
+      If all three of the above are empty, the title and URL of the current site will be shared.
+    </p>
+    <ul class="attributes-list">
+      <li>
+        <strong>data-type:</strong>
+        <span>Can be one of <code>default</code>, <code>icon</code>, or <code>mini</code>. This changes the button
+          style
+          as shown in the example.</span>
+      </li>
+    </ul>
+  </div>
+  </div>
 
-      <ul class="attributes-list">
-        <li>
-          <strong>data-title:</strong>
-          <span>Share title.</span>
-        </li>
-        <li>
-          <strong>data-url:</strong>
-          <span>Share URL.</span>
-        </li>
-        <li>
-          <strong>data-text:</strong>
-          <span>Share text.</span>
-        </li>
-      </ul>
-      <p class="attributes-note">
-        If all three of the above are empty, the title and URL of the current site will be shared.
-      </p>
-      <ul class="attributes-list">
-        <li>
-          <strong>data-type:</strong>
-          <span>Can be one of <code>default</code>, <code>icon</code>, or <code>mini</code>. This changes the button
-            style
-            as shown in the example.</span>
-        </li>
-      </ul>
-    </div>
-
-
-    <h3>Demo</h3>
+  <h3>Demo</h3>
 
 
 
-    <div class="nostr-share-container">
-      <!-- nostr-share elements -->
-      <div class="nostr-share-items">
-        <div class="grid-item">
-          <div>default</div><nostr-share></nostr-share>
-          <pre>&lt;nostr-share&gt;&lt;/nostr-share&gt;</pre>
+  <div class="nostr-share-container">
+    <!-- nostr-share elements -->
+    <div class="nostr-share-items">
+      <div class="grid-item">
+        <div style="font-weight: bold;">simple</div><nostr-share></nostr-share>
+        <pre>&lt;nostr-share&gt;&lt;/nostr-share&gt;</pre>
+      </div>
+
+      <div style="font-weight: bold;margin-top: 3rem;">custom</div>
+      <div class="input-container">
+
+        <div class="form-group">
+          <label for="title">data-title:</label>
+          <input type="text" id="title" placeholder="Enter Title" value="たいとる" />
         </div>
+        <div class="form-group">
+          <label for="url">data-url:</label>
+          <input type="text" id="url" placeholder="Enter URL" value="https://example.com" />
+        </div>
+        <div class="form-group">
+          <label for="text">data-text:</label>
+          <input type="text" id="text" placeholder="Enter Text" value="さんぷるシェアテキスト" />
+        </div>
+      </div>
 
-
-
-        <div class="grid-item">
-          <div>type icon</div><nostr-share data-type="icon" data-url="" data-title="" data-text=""></nostr-share>
-          <pre>
-            &lt;nostr-share data-type="icon" data-url="" data-title="" data-text="" &gt;&lt;/nostr-share&gt;
+      <div class="grid-item">
+        <div>type icon</div><nostr-share data-type="icon" data-title="たいとる" data-url="https://example.com"
+          data-text="さんぷるシェアテキスト"></nostr-share>
+        <pre>
+            &lt;nostr-share data-type="icon"  data-title="たいとる" data-url="https://example.com" data-text="さんぷるシェアテキスト" &gt;&lt;/nostr-share&gt;
           </pre>
-        </div>
+      </div>
 
-        <div class="grid-item">
-          <div>type mini</div><nostr-share data-type="mini" data-url="" data-title="" data-text=""></nostr-share>
-          <pre>&lt;nostr-share data-type="mini" data-url="" data-title="" data-text="" &gt;&lt;/nostr-share&gt;</pre>
-        </div>
-        <div class="grid-item">
-          <div>custom style</div><nostr-share data-url="" data-title="" data-text="" style="
+      <div class="grid-item">
+        <div>type mini</div><nostr-share data-type="mini" data-title="たいとる" data-url="https://example.com"
+          data-text="さんぷるシェアテキスト"></nostr-share>
+        <pre>&lt;nostr-share data-type="mini" data-title="たいとる" data-url="https://example.com"  data-text="さんぷるシェアテキスト" &gt;&lt;/nostr-share&gt;</pre>
+      </div>
+      <div class="grid-item">
+        <div>custom style</div><nostr-share data-title="たいとる" data-url="https://example.com" data-text="さんぷるシェアテキスト"
+          style="
         font-weight: bold;
         color: white;
         background-color: rgb(0, 136, 255);
@@ -330,10 +350,10 @@
         display: inline-block;
         transition: background-color 0.3s ease; 
         ">
-            カスタム
-          </nostr-share>
-          <pre>
-            &lt;nostr-share data-url="" data-title="" data-text="" style="
+          カスタム
+        </nostr-share>
+        <pre>
+            &lt;nostr-share data-title="たいとる" data-url="https://example.com"  data-text="さんぷるシェアテキスト" style="
           font-weight: bold;
           color: white;
           background-color: rgb(0, 136, 255);
@@ -347,25 +367,12 @@
               カスタム
             &lt;/nostr-share&gt;
           </pre>
-        </div>
+      </div>
 
-        </ul>
-      </div>
+
     </div>
-    <div class="input-container">
-      <div class="form-group">
-        <label for="url">data-url:</label>
-        <input type="text" id="url" placeholder="Enter URL" />
-      </div>
-      <div class="form-group">
-        <label for="title">data-title:</label>
-        <input type="text" id="title" placeholder="Enter Title" />
-      </div>
-      <div class="form-group">
-        <label for="text">data-text:</label>
-        <input type="text" id="text" placeholder="Enter Text" />
-      </div>
-    </div>
+
+
   </div>
 
   <footer>
@@ -418,7 +425,7 @@
                   min-width: 60px;
                   height: 32px;
                   -webkit-tap-highlight-color: transparent;
-                " data-title=""
+                " data-title="たいとる"
           data-nzv-id="nevent1qvzqqqqqqypzpp9sc34tdxdvxh4jeg5xgu9ctcypmvsg0n00vwfjydkrjaqh0qh4qqsxh50m0k45vyevlz0cspjpqj46e0a4mlvg8yetpn8jg6dur9gtyqgummkcz"
           data-zap-color-mode="true"
           data-relay-urls="wss://relay.nostr.band,wss://relay.damus.io,wss://nos.lol,wss://nostr.bitcoiner.social,wss://relay.nostr.wirednet.jp,wss://yabu.me">
