@@ -45,6 +45,9 @@ You can customize the share button by inserting any content into the component.
 ```
 
 
+-----
+
+
 # Client Adding Guide
 
 This project supports multiple clients to provide link sharing functionality. Please follow the guide below to add new clients to your list and submit a pull request.
