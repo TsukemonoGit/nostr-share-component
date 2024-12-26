@@ -83,6 +83,16 @@
 
     }
 
+
+    .code {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: var(--code-bg-color);
+      color: var(--code-text-color);
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
     .form-group {
       display: flex;
       flex-direction: column;
@@ -191,14 +201,6 @@
       overflow-y: auto;
     }
 
-    /* codeスタイル */
-    .usage-container code {
-      font-family: 'Courier New', Courier, monospace;
-      background-color: var(--code-bg-color);
-      color: var(--code-text-color);
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
 
     .attributes-container {
       margin: 0 1em;
@@ -242,6 +244,21 @@
 
       width: 24px;
     }
+
+    pre {
+      background-color: var(--pre-bg-color);
+      border: 1px solid var(--pre-border-color);
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px 0;
+
+      font-size: 0.9rem;
+      line-height: 1.4;
+
+      word-wrap: break-word;
+      white-space: pre-line;
+
+    }
   </style>
 </head>
 
@@ -254,7 +271,8 @@
   <h3>Usage</h3>
   <div class="usage-container">
 
-    <p>In the <code>&lt;head&gt;</code> tag<br>Note that you need to change the {VERSION} part as appropriate (e.g.
+    <p>In the <code class="code">&lt;head&gt;</code> tag<br>Note that you need to change the {VERSION}
+      part as appropriate (e.g.
       0.1.2).</p>
     <p>Please check the version
       information here:
@@ -263,15 +281,11 @@
         href="https://www.jsdelivr.com/package/npm/@konemono/nostr-share-component"><img alt="badge"
           src="https://data.jsdelivr.com/v1/package/npm/@konemono/nostr-share-component/badge" /></a>
     </p>
-    <pre>
-      &lt;script src="https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{VERSION}/dist/nostr-share-component.min.js
-"&gt;&lt;/script&gt;
+    <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{VERSION}/dist/nostr-share-component.min.js
+"&gt;&lt;/script&gt;</code>
     </pre>
-    <p>In the <code>&lt;body&gt;</code> tag</p>
-    <pre>
-      &lt;nostr-share&gt;&lt;/nostr-share&gt;
-
-    </pre>
+    <p>In the <code class="code">&lt;body&gt;</code> tag</p>
+    <pre><code> &lt;nostr-share&gt;&lt;/nostr-share&gt;</code></pre>
   </div>
   <h3>Attributes</h3>
   <div class="attributes-container">
