@@ -3,6 +3,8 @@
 # nostr-share-component
 [![](https://data.jsdelivr.com/v1/package/npm/@konemono/nostr-share-component/badge)](https://www.jsdelivr.com/package/npm/@konemono/nostr-share-component)
 
+## Usage
+[Demo](https://tsukemonogit.github.io/nostr-share-component/)
 ### 1. Insert the following code in `<head>`
 Replace the version part `{version}` with the appropriate version (e.g. `0.0.10`).
 
@@ -31,7 +33,7 @@ Example:
 ### 3. Specify the button type (optional)
 The following values ​​can be specified for data-type:
 - mini
-- icon
+- icon (The size of the icon can be specified with icon-size.)
 - If not specified, default will be used.
 
 
