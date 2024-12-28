@@ -58,7 +58,7 @@
     fill: none;
   }
   .st1 {
-    fill: var(--button1-bg-color);
+    fill: var(--bg-color);
   }
   .st2 {
     fill: var(--nostr-color);

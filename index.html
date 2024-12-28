@@ -313,6 +313,9 @@
         <span>Can be one of <code>default</code>, <code>icon</code>, or <code>mini</code>. This changes the button
           style
           as shown in the example.</span>
+        <strong>icon-size:</strong>
+        <span>For the <strong>icon type</strong>, you can specify the icon size using the icon-size</strong>
+          attribute.</span>
       </li>
     </ul>
   </div>
@@ -346,12 +349,18 @@
           <input type="text" id="text" placeholder="Enter Text" value="さんぷるシェアテキスト" />
         </div>
       </div>
-
       <div class="grid-item">
         <div>type icon</div><nostr-share data-type="icon" data-title="たいとる" data-url="https://example.com"
           data-text="さんぷるシェアテキスト"></nostr-share>
         <pre>
             &lt;nostr-share data-type="icon"  data-title="たいとる" data-url="https://example.com" data-text="さんぷるシェアテキスト" &gt;&lt;/nostr-share&gt;
+          </pre>
+      </div>
+      <div class="grid-item">
+        <div>type icon</div><nostr-share data-type="icon" icon-size="72" data-title="たいとる"
+          data-url="https://example.com" data-text="さんぷるシェアテキスト"></nostr-share>
+        <pre>
+            &lt;nostr-share data-type="icon" icon-size="72" data-title="たいとる" data-url="https://example.com" data-text="さんぷるシェアテキスト" &gt;&lt;/nostr-share&gt;
           </pre>
       </div>
 
@@ -360,6 +369,7 @@
           data-text="さんぷるシェアテキスト"></nostr-share>
         <pre>&lt;nostr-share data-type="mini" data-title="たいとる" data-url="https://example.com"  data-text="さんぷるシェアテキスト" &gt;&lt;/nostr-share&gt;</pre>
       </div>
+
       <div class="grid-item">
         <div>custom style</div><nostr-share data-title="たいとる" data-url="https://example.com" data-text="さんぷるシェアテキスト"
           style="

@@ -9,6 +9,7 @@
     "data-url"?: string;
     "data-text"?: string;
     "data-type"?: "default" | "mini" | "icon";
+    "icon-size"?: string | number; // アイコンサイズ
     class?: string;
     style?: string;
   }
@@ -18,6 +19,7 @@
     "data-text": text,
     "data-title": shareTitle,
     "data-type": buttonType = "default",
+    "icon-size": iconSize = 28,
     class: customClass,
     style: customStyle,
   }: NostrShareProps = $props();
@@ -32,6 +34,10 @@
   const closeDialog = () => {
     openDialog = false;
   };
+
+  // iconSize を数値に変換
+  const resolvedIconSize =
+    typeof iconSize === "string" ? parseInt(iconSize, 10) : iconSize;
 </script>
 
 <button
@@ -41,7 +47,7 @@
 >
   <slot>
     {#if buttonType === "mini"}<NostrIcon size={24} />{:else}
-      <NostrIcon />
+      <NostrIcon size={buttonType === "icon" ? resolvedIconSize : 28} />
     {/if}
     {#if buttonType !== "icon"}<span
         class={buttonType === "mini"
@@ -96,7 +102,6 @@
   }
   /* ボタン全体の基本スタイル */
   .nostrShare-button,
-  .nostrShare-icon,
   .nostrShare-mini {
     color: var(--button1-text-color);
     display: flex;
@@ -106,6 +111,21 @@
 
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+  }
+
+  .nostrShare-icon {
+    color: var(--button1-text-color);
+    display: inline-flex; /* インラインアイコン */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    margin: 0;
+    padding: 4px;
+    border-radius: 50%;
+    border: none; /* ボーダーを削除 */
+    background-color: transparent; /* 背景を透明に */
   }
 
   /* ボタンスタイル */
@@ -135,23 +155,16 @@
     color: var(--button2-text-color);
   }
 
-  /* アイコンスタイル */
-  .nostrShare-icon {
-    width: 36px;
-    height: 36px;
-    margin: 4px;
-    border-radius: 50%;
-    background-color: var(--button1-bg-color); /* グレー */
-  }
-
   .nostrShare-icon:hover {
     background-color: var(--button1-hover-color); /* グレー */
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
   }
 
   .nostrShare-icon:active {
     background-color: #d1d5db;
     transform: scale(0.95);
+    transition: all 0.2s ease-in-out;
   }
 
   /* miniスタイル */
