@@ -49,6 +49,7 @@
 <style>
   /* アイコン内部のSVG */
   .nostr-icon {
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;

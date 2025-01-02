@@ -11,7 +11,7 @@
     "data-type"?: "default" | "mini" | "icon";
     "icon-size"?: string | number; // アイコンサイズ
     class?: string;
-    style?: string;
+    "data-style"?: string;
   }
 
   let {
@@ -21,7 +21,7 @@
     "data-type": buttonType = "default",
     "icon-size": iconSize = 28,
     class: customClass,
-    style: customStyle,
+    "data-style": customStyle,
   }: NostrShareProps = $props();
   //https://zenn.dev/tnzk/articles/835d3252ce01ed#dom-api%E7%B5%8C%E7%94%B1%E3%81%AE%E5%B1%9E%E6%80%A7%E7%9B%B4%E3%81%AE%E5%A4%89%E6%9B%B4%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8C%E3%80%81bind-%E6%A9%9F%E6%A7%8B%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84
   //let dialog: HTMLDialogElement;
@@ -67,6 +67,10 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     --text-color-main: #2e2e2e;
 
     --button1-text-color: #662482;
@@ -84,6 +88,10 @@
   }
   @media (prefers-color-scheme: dark) {
     :host {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       --text-color-main: #ffffff;
 
       --button1-text-color: #eec5ff;
@@ -115,17 +123,17 @@
 
   .nostrShare-icon {
     color: var(--button1-text-color);
-    display: inline-flex; /* インラインアイコン */
+    display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     width: var(--icon-size);
     height: var(--icon-size);
-    margin: 0;
+    margin: auto;
     padding: 4px;
     border-radius: 50%;
-    border: none; /* ボーダーを削除 */
-    background-color: transparent; /* 背景を透明に */
+    border: none;
+    background-color: transparent;
   }
 
   /* ボタンスタイル */
