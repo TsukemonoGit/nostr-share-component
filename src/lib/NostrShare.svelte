@@ -41,7 +41,7 @@
 </script>
 
 <button
-  class={`${customClass || (buttonType === "icon" ? "nostrShare-icon" : buttonType === "mini" ? "nostrShare-mini" : "nostrShare-button")}`}
+  class={`${customStyle ? "" : customClass || (buttonType === "icon" ? "nostrShare-icon" : buttonType === "mini" ? "nostrShare-mini" : "nostrShare-button")}`}
   style={customStyle || ""}
   onclick={handleClickOpenDialog}
 >
