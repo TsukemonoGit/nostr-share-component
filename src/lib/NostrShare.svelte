@@ -108,6 +108,16 @@
       --border-color: #333333;
     }
   }
+  /* デフォルトのスタイルを無効にする？*/
+  button {
+    background: none;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
   /* ボタン全体の基本スタイル */
   .nostrShare-button,
   .nostrShare-mini {
