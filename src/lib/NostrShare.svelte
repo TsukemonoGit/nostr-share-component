@@ -38,10 +38,19 @@
   // iconSize を数値に変換
   const resolvedIconSize =
     typeof iconSize === "string" ? parseInt(iconSize, 10) : iconSize;
+
+  //`${customStyle ? "" : customClass || (buttonType === "icon" ? "nostrShare-icon" : buttonType === "mini" ? "nostrShare-mini" : "nostrShare-button")}`
+  let buttonClass: string = $derived.by(() => {
+    if (customStyle) return "";
+    if (customClass) return customClass;
+    if (buttonType === "icon") return "nostrShare-icon";
+    if (buttonType === "mini") return "nostrShare-mini";
+    return "nostrShare-button";
+  });
 </script>
 
 <button
-  class={`${customStyle ? "" : customClass || (buttonType === "icon" ? "nostrShare-icon" : buttonType === "mini" ? "nostrShare-mini" : "nostrShare-button")}`}
+  class={buttonClass}
   style={customStyle || ""}
   onclick={handleClickOpenDialog}
 >
