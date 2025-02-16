@@ -1,4 +1,9 @@
-<svelte:options customElement="nostr-share" />
+<svelte:options
+  customElement={{
+    tag: "nostr-share",
+    shadow: "open",
+  }}
+/>
 
 <script lang="ts">
   import Dialog from "./Dialog.svelte";
@@ -23,7 +28,7 @@
     class: customClass,
     "data-style": customStyle,
   }: NostrShareProps = $props();
-  //https://zenn.dev/tnzk/articles/835d3252ce01ed#dom-api%E7%B5%8C%E7%94%B1%E3%81%AE%E5%B1%9E%E6%80%A7%E7%9B%B4%E3%81%AE%E5%A4%89%E6%9B%B4%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8C%E3%80%81bind-%E6%A9%9F%E6%A7%8B%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84
+  //https://zenn.dev/tnzk/articles/835d3252ce01ed#dom-api%E7%B5%8C%E7%94%B1%E3%81%AE%E5%B1%9E%E6%80%A7%E7%9B%B4%E3%81%AE%E5%A4%89%E6%9B%B4%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8C%E3%80%81bind-%E6%A9%9F%E6%A7%8B%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84
   //let dialog: HTMLDialogElement;
   let openDialog = $state(false);
 
@@ -39,18 +44,18 @@
   const resolvedIconSize =
     typeof iconSize === "string" ? parseInt(iconSize, 10) : iconSize;
 
-  //`${customStyle ? "" : customClass || (buttonType === "icon" ? "nostrShare-icon" : buttonType === "mini" ? "nostrShare-mini" : "nostrShare-button")}`
-  let buttonClass: string = $derived.by(() => {
+  // data-属性を使用してスタイルを適用
+  let buttonDataAttr: string = $derived.by(() => {
     if (customStyle) return "";
-    if (customClass) return customClass;
-    if (buttonType === "icon") return "nostrShare-icon";
-    if (buttonType === "mini") return "nostrShare-mini";
-    return "nostrShare-button";
+    if (buttonType === "icon") return "nostr-share-icon";
+    if (buttonType === "mini") return "nostr-share-mini";
+    return "nostr-share-button";
   });
 </script>
 
 <button
-  class={buttonClass}
+  class={customClass}
+  data-nostr-share={buttonDataAttr}
   style={customStyle || ""}
   onclick={handleClickOpenDialog}
 >
@@ -128,8 +133,8 @@
   }
 
   /* ボタン全体の基本スタイル */
-  .nostrShare-button,
-  .nostrShare-mini {
+  [data-nostr-share="nostr-share-button"],
+  [data-nostr-share="nostr-share-mini"] {
     color: var(--button1-text-color);
     display: flex;
     align-items: center;
@@ -140,7 +145,7 @@
     transition: all 0.2s ease-in-out;
   }
 
-  .nostrShare-icon {
+  [data-nostr-share="nostr-share-icon"] {
     color: var(--button1-text-color);
     display: flex;
     align-items: center;
@@ -156,7 +161,7 @@
   }
 
   /* ボタンスタイル */
-  .nostrShare-button {
+  [data-nostr-share="nostr-share-button"] {
     padding: 6px 16px;
     margin: 4px;
     font-weight: bold;
@@ -165,12 +170,12 @@
     color: var(--button2-text-color); /* ダークグレー */
   }
 
-  .nostrShare-button:hover {
+  [data-nostr-share="nostr-share-button"]:hover {
     background-color: var(--button1-hover-color); /* 少し明るいグレー */
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
   }
 
-  .nostrShare-button:active {
+  [data-nostr-share="nostr-share-button"]:active {
     background-color: #d1d5db; /* ダークグレー */
     transform: scale(0.98);
   }
@@ -182,20 +187,20 @@
     color: var(--button2-text-color);
   }
 
-  .nostrShare-icon:hover {
+  [data-nostr-share="nostr-share-icon"]:hover {
     background-color: var(--button1-hover-color); /* グレー */
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease-in-out;
   }
 
-  .nostrShare-icon:active {
+  [data-nostr-share="nostr-share-icon"]:active {
     background-color: #d1d5db;
     transform: scale(0.95);
     transition: all 0.2s ease-in-out;
   }
 
   /* miniスタイル */
-  .nostrShare-mini {
+  [data-nostr-share="nostr-share-mini"] {
     padding: 2px 6px;
     margin: 2px;
 
@@ -204,12 +209,12 @@
     color: var(--button2-text-color); /* ダークグレー */
   }
 
-  .nostrShare-mini:hover {
+  [data-nostr-share="nostr-share-mini"]:hover {
     background-color: var(--button1-hover-color); /* 少し明るいグレー */
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
   }
 
-  .nostrShare-mini:active {
+  [data-nostr-share="nostr-share-mini"]:active {
     background-color: #d1d5db; /* ダークグレー */
     transform: scale(0.98);
   }
