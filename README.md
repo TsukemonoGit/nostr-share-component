@@ -40,7 +40,7 @@ data-type に以下の値を指定できます：
 コンポーネント内に任意のコンテンツを挿入することで、共有ボタンをカスタマイズできます。
 
 ```html
-<nostr-share style="" data-url="https://example.com" data-title="Example Title" data-text="Example Text">
+<nostr-share data-style="" data-url="https://example.com" data-title="Example Title" data-text="Example Text">
     Share on Nostr
 </nostr-share>
 ```
