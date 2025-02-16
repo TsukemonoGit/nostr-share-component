@@ -5,9 +5,8 @@ export const list = [
     icon: "https://nostter.app/favicon.ico",
   },
   {
-    name: "lumilumi",
+    name: "Lumilumi",
     url: "https://lumilumi.app/post?url={url}&text={text}&title={title}",
     icon: "https://lumilumi.app/favicon.ico",
   },
- 
 ];

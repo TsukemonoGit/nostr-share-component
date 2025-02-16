@@ -69,7 +69,7 @@
     <button onclick={handleClose} class="close-button" aria-label="Close"
       >✖</button
     >
-    <h2 class="title">Share</h2>
+    <h2 class="title">Select Share Client</h2>
     <div class="list">
       {#each list as li}
         <button class="item" onclick={() => handleClickList(li.url)}>
@@ -77,6 +77,14 @@
           {li.name}
         </button>
       {/each}
+    </div>
+    <div class="footer">
+      <a
+        target="_blank"
+        referrerpolicy="no-referrer"
+        href="https://tsukemonogit.github.io/nostr-share-component/"
+        >nostr-share-component</a
+      >
     </div>
   </div>
 </div>
@@ -101,7 +109,7 @@
     flex-direction: column;
     position: relative;
     background-color: var(--bg-color);
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 12px; /* 柔らかい角丸 */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     width: 90%;
@@ -111,7 +119,7 @@
 
   /* タイトル */
   .title {
-    margin: 0;
+    margin: 0.5em;
     font-size: 1.25rem;
     font-weight: bold;
     text-align: center;
@@ -134,7 +142,7 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 1rem;
     background-color: var(--button2-bg-color); /* グレー100 */
     border: 1px solid var(--border-color); /* グレー300 */
     border-radius: 8px;
@@ -182,5 +190,20 @@
   .close-button:active {
     background-color: var(--button2-active-color); /* グレー400 */
     transform: scale(0.95); /* 押した感覚を演出 */
+  }
+
+  .footer {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.75rem;
+    border-top: 1px solid var(--border-color); /* 線を追加 */
+    padding-top: 0.5rem; /* 線とコンテンツの間にスペースを追加 */
+  }
+  a {
+    font-weight: 500;
+    color: var(--button1-border-color);
+  }
+  a:hover {
+    color: var(--button2-text-color);
   }
 </style>
