@@ -101,6 +101,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 50;
   }
 
   /* ダイアログ本体 */
