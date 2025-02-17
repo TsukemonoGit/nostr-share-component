@@ -41,7 +41,7 @@ The following values ​​can be specified for data-type:
 You can customize the share button by inserting any content into the component.
 
 ```html
-<nostr-share style="" data-url="https://example.com" data-title="Example Title" data-text="Example Text">
+<nostr-share data-style="" data-url="https://example.com" data-title="Example Title" data-text="Example Text">
     Share on Nostr
 </nostr-share>
 ```
