@@ -4,12 +4,10 @@
   import { list } from "./list";
 
   interface Props {
-    url?: string;
     text?: string;
-    shareTitle?: string;
     handleClose: () => void;
   }
-  let { url = "", text = "", shareTitle = "", handleClose }: Props = $props();
+  let { text = "", handleClose }: Props = $props();
 
   //   // アクセス元のデバイス情報を取得
   //  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -26,14 +24,10 @@
 
   const handleClickList = (clientUrl: string) => {
     // url, text, shareTitleが空の場合、デフォルト値を設定
-    if (url === "" && text === "" && shareTitle === "") {
-      url = window.location.href; // 現在のページのURLを取得
-      shareTitle = document.title; // 現在のページのタイトルを取得
+    if (text === "") {
+      text = `${document.title}\n${window.location.href}`; // 現在のページのタイトルを取得// 現在のページのURLを取得
     }
-    const link = clientUrl
-      .replace("{url}", encodeURIComponent(url))
-      .replace("{title}", encodeURIComponent(shareTitle))
-      .replace("{text}", encodeURIComponent(text));
+    const link = clientUrl.replace("{text}", encodeURIComponent(text));
 
     // const shareUrl = generateShareUrl(link); //とりあえずlumilumiとnostterはこれしなくてもよさげだからとりあえずしなくていいかのやつ（要素が空のパラメーターを削除）
 
@@ -41,25 +35,6 @@
     window.open(link, "_blank", "noreferrer");
     handleClose();
   };
-
-  // function generateShareUrl(clientUrl: string) {
-  //   const urlObj = new URL(clientUrl); // URLを解析するためにURLオブジェクトを作成
-  //   const searchParams = new URLSearchParams(urlObj.search); // クエリパラメータを取得
-  //   console.log(searchParams);
-
-  //   // 各パラメータを設定
-  //   searchParams.forEach((value, key) => {
-  //     // 空やundefinedの値の場合、削除
-  //     if (!value || value.trim() === "") {
-  //       searchParams.delete(key); // 空の場合は削除
-  //     }
-  //   });
-
-  //   // 修正されたクエリパラメータをURLに反映
-  //   urlObj.search = searchParams.toString();
-
-  //   return urlObj.toString(); // 新しいURLを返す
-  // }
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
