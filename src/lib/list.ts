@@ -1,12 +1,12 @@
 export const list = [
   {
     name: "nostter",
-    url: "https://nostter.app/post?text={text}&url={url}&title={title}",
+    url: "https://nostter.app/post?content={text}",
     icon: "https://nostter.app/favicon.ico",
   },
   {
     name: "Lumilumi",
-    url: "https://lumilumi.app/post?url={url}&text={text}&title={title}",
+    url: "https://lumilumi.app/post?text={text}",
     icon: "https://lumilumi.app/favicon.ico",
   },
 ];

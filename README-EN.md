@@ -20,13 +20,13 @@ Replace the version part `{version}` with the appropriate version (e.g. `0.0.10`
 <nostr-share></nostr-share>
 ```
 
-- You can specify the strings you want to share in data-url, data-title, and data-text.
-- If url, title, and text are not specified, the URL and title of the site where you installed the site will be shared.
+- You can specify the strings you want to share in data-text.
+- If not specified, the URL and title of the site where you installed the site will be shared.
 
 
 Example:
 ```html
-<nostr-share data-url="https://example.com" data-title="Example Title" data-text="Example Text"></nostr-share>
+<nostr-share data-text="Example Text"></nostr-share>
 ```
 
 
@@ -41,7 +41,7 @@ The following values ​​can be specified for data-type:
 You can customize the share button by inserting any content into the component.
 
 ```html
-<nostr-share data-style="" data-url="https://example.com" data-title="Example Title" data-text="Example Text">
+<nostr-share data-style=""  data-text="Example Text">
     Share on Nostr
 </nostr-share>
 ```
@@ -60,14 +60,14 @@ Add new clients to the [list](src/lib/list.ts) array in the following format:
 ```javascript
 {
 name: "Client name",
-url: "https://example.com/share?text={text}&url={url}&title={title}",
+url: "https://example.com/share?text={text}",
 icon: "https://example.com/favicon.ico",
 }
 ```
 ## Field Description
 - name: Name of the client (short and descriptive is recommended).
 - url: Link sharing URL of the client.
-- Enable dynamic link generation by including {text}, {url}, {title} parameters.
+- Enable dynamic link generation by including {text} parameters.
 - icon: Favicon URL of the client (optional, but please provide it if possible).
 
 ## Notes

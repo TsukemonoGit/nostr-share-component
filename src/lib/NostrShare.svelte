@@ -10,8 +10,6 @@
   import NostrIcon from "./NostrIcon.svelte";
 
   export interface NostrShareProps {
-    "data-title"?: string;
-    "data-url"?: string;
     "data-text"?: string;
     "data-type"?: "default" | "mini" | "icon";
     "icon-size"?: string | number; // アイコンサイズ
@@ -20,9 +18,7 @@
   }
 
   let {
-    "data-url": url,
     "data-text": text,
-    "data-title": shareTitle,
     "data-type": buttonType = "default",
     "icon-size": iconSize = 28,
     class: customClass,
@@ -73,7 +69,7 @@
 </button>
 
 {#if openDialog}
-  <Dialog handleClose={closeDialog} {url} {text} {shareTitle} />
+  <Dialog handleClose={closeDialog} {text} />
 {/if}
 
 <style>

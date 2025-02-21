@@ -19,13 +19,13 @@
 <nostr-share></nostr-share>
 ```
 
-- data-url、data-title、data-text にそれぞれ共有したい文字列を指定することができます。
-- url、title、text が指定されていない場合、設置したサイトのURLとタイトルが共有されます。
+- data-text に共有したい文字列を指定することができます。
+- 指定されていない場合、設置したサイトのURLとタイトルが共有されます。
 
 
 例:
 ```html
-<nostr-share data-url="https://example.com" data-title="Example Title" data-text="Example Text"></nostr-share>
+<nostr-share data-text="Example Text"></nostr-share>
 ```
 
 
@@ -40,7 +40,7 @@ data-type に以下の値を指定できます：
 コンポーネント内に任意のコンテンツを挿入することで、共有ボタンをカスタマイズできます。
 
 ```html
-<nostr-share data-style="" data-url="https://example.com" data-title="Example Title" data-text="Example Text">
+<nostr-share data-style="" data-text="Example Text">
     Share on Nostr
 </nostr-share>
 ```
@@ -61,14 +61,14 @@ data-type に以下の値を指定できます：
 ```javascript
 {
   name: "クライアント名",
-  url: "https://example.com/share?text={text}&url={url}&title={title}",
+  url: "https://example.com/share?text={text}",
   icon: "https://example.com/favicon.ico",
 }
 ```
 ## フィールドの説明
 - name: クライアントの名前（短くわかりやすいものを推奨）。
 - url: クライアントのリンク共有URL。
-- {text}, {url}, {title} のパラメータを含めることで動的なリンク生成を可能にします。
+- {text} のパラメータを含めることで動的なリンク生成を可能にします。
 - icon: クライアントのファビコンURL（任意ですが、できるだけ提供してください）。
 
 

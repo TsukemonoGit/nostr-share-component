@@ -297,21 +297,14 @@
   <div class="attributes-container">
 
     <ul class="attributes-list">
-      <li>
-        <strong>data-title:</strong>
-        <span>Share title.</span>
-      </li>
-      <li>
-        <strong>data-url:</strong>
-        <span>Share URL.</span>
-      </li>
+
       <li>
         <strong>data-text:</strong>
         <span>Share text.</span>
       </li>
     </ul>
     <p class="attributes-note">
-      If all three of the above are empty, the title and URL of the current site will be shared.
+      If empty, the title and URL of the current site will be shared.
     </p>
     <ul class="attributes-list">
       <li>
@@ -346,42 +339,39 @@
       <div class="input-container">
 
         <div class="form-group">
-          <label for="title">data-title:</label>
-          <input type="text" id="title" placeholder="Enter Title" value="たいとる" />
-        </div>
-        <div class="form-group">
-          <label for="url">data-url:</label>
-          <input type="text" id="url" placeholder="Enter URL" value="https://example.com" />
-        </div>
-        <div class="form-group">
           <label for="text">data-text:</label>
-          <input type="text" id="text" placeholder="Enter Text" value="さんぷるシェアテキスト" />
+          <textarea id="text" placeholder="Enter Text" rows="4">さんぷるシェアテキスト
+https://example.com
+          </textarea>
         </div>
       </div>
       <div class="grid-item">
-        <div>type icon</div><nostr-share data-type="icon" data-title="たいとる" data-url="https://example.com"
-          data-text="さんぷるシェアテキスト"></nostr-share>
+        <div>type icon</div><nostr-share data-type="icon" data-text="さんぷるシェアテキスト
+https://example.com"></nostr-share>
         <pre>
-            &lt;nostr-share data-type="icon"  data-title="たいとる" data-url="https://example.com" data-text="さんぷるシェアテキスト" &gt;&lt;/nostr-share&gt;
+            &lt;nostr-share data-type="icon"   data-text="さんぷるシェアテキスト
+https://example.com" &gt;&lt;/nostr-share&gt;
           </pre>
       </div>
       <div class="grid-item">
-        <div>type icon</div><nostr-share data-type="icon" icon-size="72" data-title="たいとる"
-          data-url="https://example.com" data-text="さんぷるシェアテキスト"></nostr-share>
+        <div>type icon</div><nostr-share data-type="icon" icon-size="72" data-text="さんぷるシェアテキスト
+https://example.com"></nostr-share>
         <pre>
-            &lt;nostr-share data-type="icon" icon-size="72" data-title="たいとる" data-url="https://example.com" data-text="さんぷるシェアテキスト" &gt;&lt;/nostr-share&gt;
+            &lt;nostr-share data-type="icon" icon-size="72" data-text="さんぷるシェアテキスト
+https://example.com" &gt;&lt;/nostr-share&gt;
           </pre>
       </div>
 
       <div class="grid-item">
-        <div>type mini</div><nostr-share data-type="mini" data-title="たいとる" data-url="https://example.com"
-          data-text="さんぷるシェアテキスト"></nostr-share>
-        <pre>&lt;nostr-share data-type="mini" data-title="たいとる" data-url="https://example.com"  data-text="さんぷるシェアテキスト" &gt;&lt;/nostr-share&gt;</pre>
+        <div>type mini</div><nostr-share data-type="mini" data-text="さんぷるシェアテキスト
+https://example.com"></nostr-share>
+        <pre>&lt;nostr-share data-type="mini" data-text="さんぷるシェアテキスト
+https://example.com" &gt;&lt;/nostr-share&gt;</pre>
       </div>
 
       <div class="grid-item">
-        <div>custom style</div><nostr-share data-title="たいとる" data-url="https://example.com" data-text="さんぷるシェアテキスト"
-          data-style="
+        <div>custom style</div><nostr-share data-text="さんぷるシェアテキスト
+https://example.com" data-style="
         font-weight: bold;
         color: white;
         background-color: rgb(0, 136, 255);
@@ -395,7 +385,8 @@
           カスタム
         </nostr-share>
         <pre>
-            &lt;nostr-share data-title="たいとる" data-url="https://example.com"  data-text="さんぷるシェアテキスト" data-style="
+            &lt;nostr-share   data-text="さんぷるシェアテキスト
+https://example.com" data-style="
           font-weight: bold;
           color: white;
           background-color: rgb(0, 136, 255);
@@ -410,11 +401,7 @@
             &lt;/nostr-share&gt;
           </pre>
       </div>
-
-
     </div>
-
-
   </div>
 
   <footer>
@@ -481,30 +468,25 @@
 
   <script>
     // Select input fields
-    const urlInput = document.getElementById("url");
-    const titleInput = document.getElementById("title");
-    const textInput = document.getElementById("text");
+
+    const textareaInput = document.getElementById("text");
 
     // Select all nostr-share elements
     const nostrShares = document.querySelectorAll("nostr-share");
 
     // Function to update attributes dynamically
     const updateAttributes = () => {
-      const url = urlInput.value || "";
-      const title = titleInput.value || "";
-      const text = textInput.value || "";
+
+      const text = textareaInput.value || "";
 
       nostrShares.forEach((element) => {
-        element.setAttribute("data-url", url);
-        element.setAttribute("data-title", title);
         element.setAttribute("data-text", text);
       });
     };
 
     // Add event listeners to input fields
-    urlInput.addEventListener("input", updateAttributes);
-    titleInput.addEventListener("input", updateAttributes);
-    textInput.addEventListener("input", updateAttributes);
+
+    textareaInput.addEventListener("input", updateAttributes);
   </script>
   <script src="https://cdn.jsdelivr.net/npm/nostr-zap@1.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/nostr-zap-view@1.3.6"></script>
