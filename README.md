@@ -37,13 +37,24 @@ data-type に以下の値を指定できます：
 
 
 ### 4. カスタム共有ボタンを作成 
-コンポーネント内に任意のコンテンツを挿入することで、共有ボタンをカスタマイズできます。
 
-```html
-<nostr-share data-style="" data-text="Example Text">
-    Share on Nostr
-</nostr-share>
-```
+`part(button)` と `part(text)` を使用することで、ボタンとテキストのスタイルを個別にカスタマイズできます。
+
+```css
+nostr-share::part(button) {
+  background-color: rgb(0, 136, 255);
+}
+
+nostr-share::part(button):hover {
+  background-color: rgb(255, 0, 0);
+}
+
+nostr-share::part(text) {
+  font-style: italic;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: medium;
+}
+
 
 
 -----

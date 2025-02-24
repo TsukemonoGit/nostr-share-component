@@ -37,14 +37,25 @@ The following values ​​can be specified for data-type:
 - If not specified, default will be used.
 
 
-### 4. Create a custom share button
-You can customize the share button by inserting any content into the component.
+### 4. Create a Custom Share Button
 
-```html
-<nostr-share data-style=""  data-text="Example Text">
-    Share on Nostr
-</nostr-share>
-```
+You can individually customize the button and text styles by using `part(button)` and `part(text)`.
+
+```css
+nostr-share::part(button) {
+  background-color: rgb(0, 136, 255);
+}
+
+nostr-share::part(button):hover {
+  background-color: rgb(255, 0, 0);
+}
+
+nostr-share::part(text) {
+  font-style: italic;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: medium;
+}
+
 
 
 -----
