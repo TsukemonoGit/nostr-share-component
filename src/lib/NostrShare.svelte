@@ -37,14 +37,14 @@
 </script>
 
 <button
-  part="nostr-share-button"
+  part="button"
   data-nostr-share={buttonType}
   onclick={handleClickOpenDialog}
 >
   <slot>
     <NostrIcon size={buttonType === "icon" ? resolvedIconSize : 28} />
     {#if buttonType !== "icon"}
-      <span part="nostr-share-text">Nostr</span>
+      <span part="text">Nostr</span>
     {/if}
   </slot>
 </button>
@@ -102,7 +102,7 @@
     }
   }
 
-  [part="nostr-share-button"] {
+  [part="button"] {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,7 +112,7 @@
     border-radius: 8px;
     font-weight: bold;
   }
-  [part="nostr-share-button"]:active {
+  [part="button"]:active {
     transform: scale(0.98);
   }
 
@@ -150,11 +150,11 @@
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
   }
 
-  [part="nostr-share-text"] {
+  [part="text"] {
     font-size: medium;
   }
 
-  [data-nostr-share="mini"] [part="nostr-share-text"] {
+  [data-nostr-share="mini"] [part="text"] {
     font-size: small;
   }
 </style>
