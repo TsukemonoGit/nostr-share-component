@@ -54,7 +54,7 @@ nostr-share::part(text) {
   font-family: 'Courier New', Courier, monospace;
   font-size: medium;
 }
-
+```
 
 
 -----
