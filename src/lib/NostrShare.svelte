@@ -12,23 +12,18 @@
   export interface NostrShareProps {
     "data-text"?: string;
     "data-type"?: "default" | "mini" | "icon";
-    "icon-size"?: string | number; // アイコンサイズ
-    class?: string;
-    "data-style"?: string;
+    "icon-size"?: string | number;
   }
 
   let {
     "data-text": text,
     "data-type": buttonType = "default",
     "icon-size": iconSize = 28,
-    class: customClass,
-    "data-style": customStyle,
   }: NostrShareProps = $props();
-  //https://zenn.dev/tnzk/articles/835d3252ce01ed#dom-api%E7%B5%8C%E7%94%B1%E3%81%AE%E5%B1%9E%E6%80%A7%E7%9B%B4%E3%81%AE%E5%A4%89%E6%9B%B4%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8C%E3%80%81bind-%E6%A9%9F%E6%A7%8B%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84
-  //let dialog: HTMLDialogElement;
+
   let openDialog = $state(false);
 
-  const handleClickOpenDialog = (e: MouseEvent) => {
+  const handleClickOpenDialog = () => {
     openDialog = true;
   };
 
@@ -36,34 +31,20 @@
     openDialog = false;
   };
 
-  // iconSize を数値に変換
+  // 数値変換
   const resolvedIconSize =
     typeof iconSize === "string" ? parseInt(iconSize, 10) : iconSize;
-
-  // data-属性を使用してスタイルを適用
-  let buttonDataAttr: string = $derived.by(() => {
-    if (customStyle) return "";
-    if (buttonType === "icon") return "nostr-share-icon";
-    if (buttonType === "mini") return "nostr-share-mini";
-    return "nostr-share-button";
-  });
 </script>
 
 <button
-  class={customClass}
-  data-nostr-share={buttonDataAttr}
-  style={customStyle || ""}
+  part="nostr-share-button"
+  data-nostr-share={buttonType}
   onclick={handleClickOpenDialog}
 >
   <slot>
-    {#if buttonType === "mini"}<NostrIcon size={24} />{:else}
-      <NostrIcon size={buttonType === "icon" ? resolvedIconSize : 28} />
-    {/if}
-    {#if buttonType !== "icon"}<span
-        class={buttonType === "mini"
-          ? "nostrShare-text-mini"
-          : "nostrShare-text"}>Nostr</span
-      >
+    <NostrIcon size={buttonType === "icon" ? resolvedIconSize : 28} />
+    {#if buttonType !== "icon"}
+      <span part="nostr-share-text">Nostr</span>
     {/if}
   </slot>
 </button>
@@ -86,6 +67,7 @@
     --button1-text-color: #662482;
     --button1-bg-color: #ececec;
     --button1-hover-color: #b1b1b1;
+    --button1-active-color: #999999;
     --button1-border-color: #b9b9b9;
 
     --button2-text-color: rgb(73, 73, 73);
@@ -107,6 +89,7 @@
       --button1-text-color: #eec5ff;
       --button1-bg-color: #363636;
       --button1-hover-color: #555555;
+      --button1-active-color: #757575;
       --button1-border-color: #555555;
 
       --button2-text-color: #f1f1f1;
@@ -118,107 +101,60 @@
       --border-color: #333333;
     }
   }
-  /* デフォルトのスタイルを無効にする？*/
-  button {
-    background: none;
-    border: none;
-    outline: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-  }
 
-  /* ボタン全体の基本スタイル */
-  [data-nostr-share="nostr-share-button"],
-  [data-nostr-share="nostr-share-mini"] {
-    color: var(--button1-text-color);
+  [part="nostr-share-button"] {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    gap: 0.5em;
+    transition: all 0.1s ease-in-out;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+  [part="nostr-share-button"]:active {
+    transform: scale(0.98);
+  }
+
+  [data-nostr-share="default"] {
+    padding: 6px 16px;
+    background-color: var(--button1-bg-color);
+    color: var(--button2-text-color);
     border: 1px solid var(--button1-border-color);
-
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
   }
 
-  [data-nostr-share="nostr-share-icon"] {
-    color: var(--button1-text-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  [data-nostr-share="mini"] {
+    padding: 2px 6px;
+    background-color: var(--button1-bg-color);
+    color: var(--button2-text-color);
+    border: 1px solid var(--button1-border-color);
+  }
+
+  [data-nostr-share="default"]:hover,
+  [data-nostr-share="mini"]:hover {
+    background-color: var(--button1-hover-color);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  }
+
+  [data-nostr-share="icon"] {
     width: var(--icon-size);
     height: var(--icon-size);
-    margin: auto;
-    padding: 4px;
+    padding: 2px;
     border-radius: 50%;
-    border: none;
     background-color: transparent;
+    border: none;
   }
 
-  /* ボタンスタイル */
-  [data-nostr-share="nostr-share-button"] {
-    padding: 6px 16px;
-    margin: 4px;
-    font-weight: bold;
-    border-radius: 8px;
-    background-color: var(--button1-bg-color); /* グレー */
-    color: var(--button2-text-color); /* ダークグレー */
-  }
-
-  [data-nostr-share="nostr-share-button"]:hover {
-    background-color: var(--button1-hover-color); /* 少し明るいグレー */
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-  }
-
-  [data-nostr-share="nostr-share-button"]:active {
-    background-color: #d1d5db; /* ダークグレー */
-    transform: scale(0.98);
-  }
-
-  /* テキスト用スタイル */
-  .nostrShare-text {
-    margin-left: 8px;
-    font-size: medium;
-    color: var(--button2-text-color);
-  }
-
-  [data-nostr-share="nostr-share-icon"]:hover {
-    background-color: var(--button1-hover-color); /* グレー */
+  [data-nostr-share="icon"]:hover {
+    background-color: var(--button1-hover-color);
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease-in-out;
   }
 
-  [data-nostr-share="nostr-share-icon"]:active {
-    background-color: #d1d5db;
-    transform: scale(0.95);
-    transition: all 0.2s ease-in-out;
+  [part="nostr-share-text"] {
+    font-size: medium;
   }
 
-  /* miniスタイル */
-  [data-nostr-share="nostr-share-mini"] {
-    padding: 2px 6px;
-    margin: 2px;
-
-    border-radius: 8px;
-    background-color: var(--button1-bg-color); /* グレー */
-    color: var(--button2-text-color); /* ダークグレー */
-  }
-
-  [data-nostr-share="nostr-share-mini"]:hover {
-    background-color: var(--button1-hover-color); /* 少し明るいグレー */
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-  }
-
-  [data-nostr-share="nostr-share-mini"]:active {
-    background-color: #d1d5db; /* ダークグレー */
-    transform: scale(0.98);
-  }
-  /* テキスト用スタイル */
-  .nostrShare-text-mini {
-    margin-left: 4px;
+  [data-nostr-share="mini"] [part="nostr-share-text"] {
     font-size: small;
-    font-weight: bold;
-    color: var(--button2-text-color);
   }
 </style>
