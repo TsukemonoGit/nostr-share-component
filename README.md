@@ -1,44 +1,49 @@
+[JA](./README-ja.md)
 
-[EN](./README-EN.md)
 # nostr-share-component
+
 [![](https://data.jsdelivr.com/v1/package/npm/@konemono/nostr-share-component/badge)](https://www.jsdelivr.com/package/npm/@konemono/nostr-share-component)
-## 使い方
+
+## Usage
+
 [Demo](https://tsukemonogit.github.io/nostr-share-component/)
-### 1. `<head>`に以下のコードを挿入
-   バージョン部分 `{version}` を適切なバージョン（例: `0.0.10`）に置き換えてください。
 
-   ```html
-   <script src="
-   https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{version}/dist/nostr-share-component.min.js
-   "></script>
-   ```
+### 1. Insert the following code in `<head>`
 
-### 2. 任意の位置に以下のコードを配置
+Replace the version part `{version}` with the appropriate version (e.g. `0.0.10`).
+
+```html
+<script src="
+https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{version}/dist/nostr-share-component.min.js
+"></script>
+```
+
+### 2. Place the following code anywhere
 
 ```html
 <nostr-share></nostr-share>
 ```
 
-- data-text に共有したい文字列を指定することができます。
-- 指定されていない場合、設置したサイトのURLとタイトルが共有されます。
+- You can specify the strings you want to share in data-text.
+- If not specified, the URL and title of the site where you installed the site will be shared.
 
+Example:
 
-例:
 ```html
 <nostr-share data-text="Example Text"></nostr-share>
 ```
 
+### 3. Specify the button type (optional)
 
-### 3. ボタンの種類を指定（任意）
-data-type に以下の値を指定できます：
+The following values ​​can be specified for data-type:
+
 - mini
-- icon ( icon-size で アイコンのサイズを指定できます。)
-- 指定なしの場合は default になります。
+- icon (The size of the icon can be specified with icon-size.)
+- If not specified, default will be used.
 
+### 4. Create a Custom Share Button
 
-### 4. カスタム共有ボタンを作成 
-
-`part(button)` と `part(text)` を使用することで、ボタンとテキストのスタイルを個別にカスタマイズできます。
+You can individually customize the button and text styles by using `part(button)` and `part(text)`.
 
 ```css
 nostr-share::part(button) {
@@ -51,41 +56,41 @@ nostr-share::part(button):hover {
 
 nostr-share::part(text) {
   font-style: italic;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: medium;
 }
 ```
 
+---
 
------
+# Client Adding Guide
 
+This project supports multiple clients to provide link sharing functionality. Please follow the guide below to add new clients to your list and submit a pull request.
 
-# クライアント追加ガイド
+## Client List Format
 
-このプロジェクトでは、リンク共有機能を提供するために複数のクライアントをサポートしています。以下のガイドに従って、新しいクライアントをリストに追加し、プルリクエストを送信してください。
+Add new clients to the [list](src/lib/list.ts) array in the following format:
 
-## クライアントリストの形式
-
-
-
-[list](src/lib/list.ts) 配列に新しいクライアントを以下の形式で追加します：
 ```javascript
 {
-  name: "クライアント名",
-  url: "https://example.com/share?text={text}",
-  icon: "https://example.com/favicon.ico",
+name: "Client name",
+url: "https://example.com/share?text={text}",
+icon: "https://example.com/favicon.ico",
 }
 ```
-## フィールドの説明
-- name: クライアントの名前（短くわかりやすいものを推奨）。
-- url: クライアントのリンク共有URL。
-- {text} のパラメータを含めることで動的なリンク生成を可能にします。
-- icon: クライアントのファビコンURL（任意ですが、できるだけ提供してください）。
 
+## Field Description
 
-## 注意事項
-- 現在のリスト形式は試験的なものであり、今後変更される可能性があります。そのため、追加されたクライアントは将来的に形式変更への対応が必要になる場合があります。
-- 新しいクライアントを追加する際は、他のクライアントに影響を与えないよう注意してください。
+- name: Name of the client (short and descriptive is recommended).
+- url: Link sharing URL of the client.
+- Enable dynamic link generation by including {text} parameters.
+- icon: Favicon URL of the client (optional, but please provide it if possible).
 
-## サポート
-ご不明点がある場合や提案がある場合は、Issue を作成してください。
+## Notes
+
+- The current list format is experimental and may change in the future. Therefore, added clients may need to support format changes in the future.
+- Be careful when adding new clients so you don't affect other clients.
+
+## Support
+
+If you have any questions or suggestions, please create an issue.

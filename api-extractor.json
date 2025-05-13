@@ -1,0 +1,13 @@
+{
+  "extends": "./node_modules/@microsoft/api-extractor/config/cli.json",
+  "mainEntryPointFilePath": "./src/main.d.ts",
+  "projectFolder": ".",
+  "apiReport": {
+    "enabled": false,
+    "reportFolder": "./docs/api"
+  },
+  "dtsRollup": {
+    "enabled": true,
+    "downlevelIteration": true
+  }
+}
