@@ -49,7 +49,7 @@
       {#each list as li}
         <button class="item" onclick={() => handleClickList(li.url)}>
           <img width={24} src={li.icon} alt={li.name} />
-          {li.name}
+          <span class="item-name">{li.name}</span>
         </button>
       {/each}
     </div>
@@ -113,12 +113,13 @@
   /* リストアイテム */
   .item {
     color: var(--button2-text-color);
+
     display: flex;
-    width: 120px;
+    min-width: 120px;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
     background-color: var(--button2-bg-color); /* グレー100 */
     border: 1px solid var(--border-color); /* グレー300 */
     border-radius: 8px;
