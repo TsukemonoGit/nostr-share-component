@@ -38,6 +38,7 @@
 
 <button
   part="button"
+  title="Share on Nostr"
   data-nostr-share={buttonType}
   onclick={handleClickOpenDialog}
 >
