@@ -1,323 +1,364 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@nikolat/makibishi@0.2.0"></script>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.jsdelivr.net/npm/@nikolat/makibishi@0.2.0"></script>
-
-  <title>Nostr Share Button</title>
-  <style>
-    :root {
-      color: #2e2e2e;
-      --bg-color: #ffffff;
-      --label-color: #555;
-      --input-bg-color: #fff;
-      --input-text-color: #333;
-      --input-border-color: #ddd;
-      --input-focus-border-color: #0078d7;
-      --input-focus-shadow-color: rgba(0, 120, 215, 0.3);
-      --input-container-bg-color: rgb(248, 248, 248);
-      --input-container-box-shadow: rgba(0, 0, 0, 0.1);
-      --pre-bg-color: #f5f5f5;
-      --pre-border-color: #ddd;
-      --code-bg-color: #f0f0f0;
-      --code-text-color: #c7254e;
-    }
-
-    @media (prefers-color-scheme: dark) {
+    <title>Nostr Share Button</title>
+    <style>
       :root {
-        --bg-color: #333333;
-        color: #ffffff;
-        --label-color: #c9c9c9;
-        --input-bg-color: #444;
-        --input-text-color: #eee;
-        --input-border-color: #555;
-        --input-focus-border-color: #00aaff;
-        --input-focus-shadow-color: rgba(0, 170, 255, 0.3);
-        --input-container-bg-color: #444;
-        --input-container-box-shadow: rgba(0, 0, 0, 0.2);
-        --pre-bg-color: #444;
-        --pre-border-color: #555;
-        --code-bg-color: #555;
-        --code-text-color: #00d1ff;
+        color: #2e2e2e;
+        --bg-color: #ffffff;
+        --label-color: #555;
+        --input-bg-color: #fff;
+        --input-text-color: #333;
+        --input-border-color: #ddd;
+        --input-focus-border-color: #0078d7;
+        --input-focus-shadow-color: rgba(0, 120, 215, 0.3);
+        --input-container-bg-color: rgb(248, 248, 248);
+        --input-container-box-shadow: rgba(0, 0, 0, 0.1);
+        --pre-bg-color: #f5f5f5;
+        --pre-border-color: #ddd;
+        --code-bg-color: #f0f0f0;
+        --code-text-color: #c7254e;
       }
-    }
 
-    body {
-      font-family: Arial, sans-serif;
-      background-color: var(--bg-color);
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 1em;
-    }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-color: #333333;
+          color: #ffffff;
+          --label-color: #c9c9c9;
+          --input-bg-color: #444;
+          --input-text-color: #eee;
+          --input-border-color: #555;
+          --input-focus-border-color: #00aaff;
+          --input-focus-shadow-color: rgba(0, 170, 255, 0.3);
+          --input-container-bg-color: #444;
+          --input-container-box-shadow: rgba(0, 0, 0, 0.2);
+          --pre-bg-color: #444;
+          --pre-border-color: #555;
+          --code-bg-color: #555;
+          --code-text-color: #00d1ff;
+        }
+      }
 
-    h1 {
-      text-align: center;
-      color: var(--text-color-main);
-    }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: var(--bg-color);
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 1em;
+      }
 
-    footer {
-      margin-top: 6rem;
-      border-top: 1px solid var(--pre-border-color);
-      padding-top: 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+      h1 {
+        text-align: center;
+        color: var(--text-color-main);
+      }
 
-    .code {
-      font-family: 'Courier New', Courier, monospace;
-      background-color: var(--code-bg-color);
-      color: var(--code-text-color);
-      padding: 4px 6px;
-      border-radius: 4px;
-      font-size: 0.9rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 15px;
-    }
-
-    label {
-      font-size: 14px;
-      font-weight: bold;
-      color: var(--label-color);
-    }
-
-    input[type="text"] {
-      padding: 10px;
-      border: 1px solid var(--input-border-color);
-      border-radius: 4px;
-      font-size: 14px;
-      background-color: var(--input-bg-color);
-      color: var(--input-text-color);
-      outline: none;
-      transition: all 0.3s ease-in-out;
-    }
-
-    input[type="text"]:focus {
-      border-color: var(--input-focus-border-color);
-      box-shadow: 0 0 5px var(--input-focus-shadow-color);
-    }
-
-    .nostr-share-container {
-      margin: 1em 1em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .input-container {
-      margin-top: 0.5rem;
-      padding: 12px;
-      background: var(--input-container-bg-color);
-      border-radius: 8px;
-      box-shadow: 0 2px 5px var(--input-container-box-shadow);
-    }
-
-    .nostr-share-items {
-      max-width: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .grid-item {
-      gap: 4px;
-      display: grid;
-      grid-template-columns: 0.7fr 0.7fr 1.5fr;
-      border-bottom: 1px solid var(--pre-border-color);
-      padding: 1em 0;
-    }
-
-    @media (max-width: 600px) {
-      .grid-item {
+      footer {
+        margin-top: 6rem;
+        border-top: 1px solid var(--pre-border-color);
+        padding-top: 1rem;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
         flex-wrap: wrap;
       }
 
-      .grid-item pre {
-        width: 100%;
+      .code {
+        font-family: "Courier New", Courier, monospace;
+        background-color: var(--code-bg-color);
+        color: var(--code-text-color);
+        padding: 4px 6px;
+        border-radius: 4px;
+        font-size: 0.9rem;
       }
-    }
 
-    .usage-container {
-      margin: 0 1em;
-      font-family: Arial, sans-serif;
-      color: var(--text-color);
-    }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 15px;
+      }
 
-    h3 {
-      margin-top: 4rem;
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: var(--text-color);
-    }
+      label {
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--label-color);
+      }
 
-    .usage-container p {
-      margin-bottom: 10px;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
+      input[type="text"] {
+        padding: 10px;
+        border: 1px solid var(--input-border-color);
+        border-radius: 4px;
+        font-size: 14px;
+        background-color: var(--input-bg-color);
+        color: var(--input-text-color);
+        outline: none;
+        transition: all 0.3s ease-in-out;
+      }
 
-    .usage-container pre,
-    .grid-item pre {
-      background-color: var(--pre-bg-color);
-      border: 1px solid var(--pre-border-color);
-      border-radius: 5px;
-      padding: 8px;
-      margin: 4px 0;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      word-wrap: break-word;
-      white-space: pre-line;
-    }
+      input[type="text"]:focus {
+        border-color: var(--input-focus-border-color);
+        box-shadow: 0 0 5px var(--input-focus-shadow-color);
+      }
 
-    .grid-item pre {
-      max-height: 4em;
-      overflow-y: auto;
-    }
+      .nostr-share-container {
+        margin: 1em 1em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-    .attributes-container {
-      margin: 0 1em;
-      padding: 6px 12px;
-      font-family: Arial, sans-serif;
-      color: var(--text-color-main);
-      border: 1px solid var(--pre-border-color);
-      border-radius: 1rem;
-    }
+      .input-container {
+        margin-top: 0.5rem;
+        padding: 12px;
+        background: var(--input-container-bg-color);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px var(--input-container-box-shadow);
+      }
 
-    .attributes-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+      .nostr-share-items {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
 
-    .attributes-list li {
-      margin-bottom: 15px;
-      line-height: 1.6;
-    }
+      .grid-item {
+        gap: 4px;
+        display: grid;
+        grid-template-columns: 0.7fr 0.7fr 1.5fr;
+        border-bottom: 1px solid var(--pre-border-color);
+        padding: 1em 0;
+      }
 
-    hr {
-      border: 1px solid var(--pre-border-color);
-    }
+      @media (max-width: 600px) {
+        .grid-item {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
 
-    .attributes-list span {
-      display: block;
-      margin-left: 20px;
-      color: var(--text-color-secondary);
-      font-size: 0.95rem;
-    }
+        .grid-item pre {
+          width: 100%;
+        }
+      }
 
-    .attributes-note {
-      padding: 4px;
-    }
+      .usage-container {
+        margin: 0 1em;
+        font-family: Arial, sans-serif;
+        color: var(--text-color);
+      }
 
-    .github {
-      width: 24px;
-    }
+      h3 {
+        margin-top: 4rem;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: var(--text-color);
+      }
 
-    pre {
-      background-color: var(--pre-bg-color);
-      border: 1px solid var(--pre-border-color);
-      border-radius: 5px;
-      padding: 10px;
-      margin: 10px 0;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      word-wrap: break-word;
-      white-space: pre-line;
-    }
+      .usage-container p {
+        margin-bottom: 10px;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
 
-    #sample1 nostr-share::part(button) {
-      background-color: rgb(0, 136, 255);
-    }
+      .usage-container pre,
+      .grid-item pre {
+        background-color: var(--pre-bg-color);
+        border: 1px solid var(--pre-border-color);
+        border-radius: 5px;
+        padding: 8px;
+        margin: 4px 0;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        word-wrap: break-word;
+        white-space: pre-line;
+      }
 
-    #sample1 nostr-share::part(button):hover {
-      background-color: rgb(255, 0, 0);
-    }
+      .grid-item pre {
+        max-height: 4em;
+        overflow-y: auto;
+      }
 
-    #sample2 nostr-share::part(text) {
-      font-style: italic;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: medium;
-    }
+      .attributes-container {
+        margin: 0 1em;
+        padding: 6px 12px;
+        font-family: Arial, sans-serif;
+        color: var(--text-color-main);
+        border: 1px solid var(--pre-border-color);
+        border-radius: 1rem;
+      }
 
-    .codetyle {
-      margin: 0;
-    }
-  </style>
-</head>
+      .attributes-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-<body>
-  <div style="display: flex; align-items: center;  justify-content: center; gap:6px">
-    <h1>Nostr Share Component</h1>
-    <a class="github" href="https://github.com/TsukemonoGit/nostr-share-component" target="_blank"
-      rel="noopener noreferrer">
-      <svg viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd"
-          d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" />
-      </svg>
-    </a>
-  </div>
+      .attributes-list li {
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
 
-  <h3>Usage</h3>
-  <div class="usage-container">
-    <p>In the <code class="code">&lt;head&gt;</code> tag<br>Note that you need to change the {VERSION} part as
-      appropriate (e.g. 0.1.2).</p>
-    <p>Please check the version information here:
-      <a title="nostr-share-component" target="_blank" rel="noopener noreferrer"
-        style="display:inline-flex; vertical-align: text-bottom;"
-        href="https://www.jsdelivr.com/package/npm/@konemono/nostr-share-component">
-        <img alt="badge" src="https://data.jsdelivr.com/v1/package/npm/@konemono/nostr-share-component/badge" />
+      hr {
+        border: 1px solid var(--pre-border-color);
+      }
+
+      .attributes-list span {
+        display: block;
+        margin-left: 20px;
+        color: var(--text-color-secondary);
+        font-size: 0.95rem;
+      }
+
+      .attributes-note {
+        padding: 4px;
+      }
+
+      .github {
+        width: 24px;
+      }
+
+      pre {
+        background-color: var(--pre-bg-color);
+        border: 1px solid var(--pre-border-color);
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        word-wrap: break-word;
+        white-space: pre-line;
+      }
+
+      #sample1 nostr-share::part(button) {
+        background-color: rgb(0, 136, 255);
+      }
+
+      #sample1 nostr-share::part(button):hover {
+        background-color: rgb(255, 0, 0);
+      }
+
+      #sample2 nostr-share::part(text) {
+        font-style: italic;
+        font-family: "Courier New", Courier, monospace;
+        font-size: medium;
+      }
+
+      .codetyle {
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      "
+    >
+      <h1>Nostr Share Component</h1>
+      <a
+        class="github"
+        href="https://github.com/TsukemonoGit/nostr-share-component"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
+          />
+        </svg>
       </a>
-    </p>
-    <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{VERSION}/dist/nostr-share-component.min.js"&gt;&lt;/script&gt;</code></pre>
-    <p>In the <code class="code">&lt;body&gt;</code> tag</p>
-    <pre><code>&lt;nostr-share&gt;&lt;/nostr-share&gt;</code></pre>
-  </div>
+    </div>
 
-  <h3>Attributes</h3>
-  <div class="attributes-container">
-    <ul class="attributes-list">
-      <li>
-        <strong>data-text:</strong>
-        <span>Share text.</span>
-      </li>
-    </ul>
-    <p class="attributes-note">If empty, the title and URL of the current site will be shared.</p>
-    <hr />
-    <ul class="attributes-list">
-      <li>
-        <strong>data-type:</strong>
-        <span>Can be one of <code>default</code>, <code>icon</code>, or <code>mini</code>. This changes the button style
-          as shown in the example.</span>
-        <strong>icon-size:</strong>
-        <span>For the <strong>icon type</strong>, you can specify the icon size using the icon-size attribute.</span>
-      </li>
-    </ul>
-  </div>
+    <h3>Usage</h3>
+    <div class="usage-container">
+      <p>
+        In the <code class="code">&lt;head&gt;</code> tag<br />Note that you
+        need to change the {VERSION} part as appropriate (e.g. 0.1.2).
+      </p>
+      <p>
+        Please check the version information here:
+        <a
+          title="nostr-share-component"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="display: inline-flex; vertical-align: text-bottom"
+          href="https://www.jsdelivr.com/package/npm/@konemono/nostr-share-component"
+        >
+          <img
+            alt="badge"
+            src="https://data.jsdelivr.com/v1/package/npm/@konemono/nostr-share-component/badge"
+          />
+        </a>
+      </p>
+      <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{VERSION}/dist/nostr-share-component.min.js"&gt;&lt;/script&gt;</code></pre>
+      <p>In the <code class="code">&lt;body&gt;</code> tag</p>
+      <pre><code>&lt;nostr-share&gt;&lt;/nostr-share&gt;</code></pre>
+    </div>
 
-  <h3>Style (Upper v0.4.0)</h3>
-  <div class="usage-container">
-    <p>Customize the style of specific parts of the <code>nostr-share</code> component using the <code>::part</code>
-      pseudo-element. The component includes two primary parts that can be styled:</p>
+    <h3>Attributes</h3>
+    <div class="attributes-container">
+      <ul class="attributes-list">
+        <li>
+          <strong>data-text:</strong>
+          <span>Share text.</span>
+        </li>
+      </ul>
+      <p class="attributes-note">
+        If empty, the title and URL of the current site will be shared.
+      </p>
+      <hr />
+      <ul class="attributes-list">
+        <li>
+          <strong>data-type:</strong>
+          <span
+            >Can be one of <code>default</code>, <code>icon</code>, or
+            <code>mini</code>. This changes the button style as shown in the
+            example.</span
+          >
+          <strong>icon-size:</strong>
+          <span
+            >For the <strong>icon type</strong>, you can specify the icon size
+            using the icon-size attribute.</span
+          >
+        </li>
+      </ul>
+    </div>
 
-    <ul>
-      <li><strong>button</strong>: The button part inside the <code>nostr-share</code> element.</li>
-      <li><strong>text</strong>: The text part inside the <code>nostr-share</code> element.</li>
-    </ul>
+    <h3>Style (Upper v0.4.0)</h3>
+    <div class="usage-container">
+      <p>
+        Customize the style of specific parts of the
+        <code>nostr-share</code> component using the
+        <code>::part</code> pseudo-element. The component includes two primary
+        parts that can be styled:
+      </p>
 
-    <p>For example, you can style the button part as follows:</p>
-    <pre><code>nostr-share::part(button) {
+      <ul>
+        <li>
+          <strong>button</strong>: The button part inside the
+          <code>nostr-share</code> element.
+        </li>
+        <li>
+          <strong>text</strong>: The text part inside the
+          <code>nostr-share</code> element.
+        </li>
+      </ul>
+
+      <p>For example, you can style the button part as follows:</p>
+      <pre><code>nostr-share::part(button) {
     background-color: rgb(0, 136, 255);
 }
 
@@ -325,173 +366,215 @@ nostr-share::part(button):hover {
     background-color: rgb(255, 0, 0);
 }</code></pre>
 
-    <p>And you can style the text part like this:</p>
-    <pre><code>nostr-share::part(text) {
+      <p>And you can style the text part like this:</p>
+      <pre><code>nostr-share::part(text) {
     font-style: italic;
     font-family: 'Courier New', Courier, monospace;
     font-size: medium;
 }</code></pre>
 
-    <p>(In v0.3 and earlier, custom styles were defined using the <code>data-style</code> field.)</p>
-  </div>
+      <p>
+        (In v0.3 and earlier, custom styles were defined using the
+        <code>data-style</code> field.)
+      </p>
+    </div>
 
-
-  <h3>Demo</h3>
-  <div class="nostr-share-container">
-    <div class="nostr-share-items">
-      <div class="grid-item">
-        <div style="font-weight: bold;">simple</div>
-        <nostr-share></nostr-share>
-        <pre>&lt;nostr-share&gt;&lt;/nostr-share&gt;</pre>
-      </div>
-
-      <div style="font-weight: bold;margin-top: 3rem;">custom</div>
-      <div class="input-container">
-        <div class="form-group">
-          <label for="text">data-text:</label>
-          <textarea id="text" placeholder="Enter Text" rows="4">さんぷるシェアテキスト https://example.com</textarea>
+    <h3>Demo</h3>
+    <div class="nostr-share-container">
+      <div class="nostr-share-items">
+        <div class="grid-item">
+          <div style="font-weight: bold">simple</div>
+          <nostr-share></nostr-share>
+          <pre>&lt;nostr-share&gt;&lt;/nostr-share&gt;</pre>
         </div>
-      </div>
-      <div class="grid-item">
-        <div>type icon</div>
-        <nostr-share data-type="icon" data-text="さんぷるシェアテキスト https://example.com"></nostr-share>
-        <div>
-          <p class="codetyle">html</p>
-          <pre>&lt;nostr-share data-type="icon" data-text="さんぷるシェアテキスト https://example.com"&gt;&lt;/nostr-share&gt;</pre>
-        </div>
-      </div>
-      <div class="grid-item">
-        <div>type icon</div>
-        <nostr-share data-type="icon" icon-size="72" data-text="さんぷるシェアテキスト https://example.com"></nostr-share>
-        <div>
-          <p class="codetyle">html</p>
-          <pre>&lt;nostr-share data-type="icon" icon-size="72" data-text="さんぷるシェアテキスト https://example.com"&gt;&lt;/nostr-share&gt;</pre>
-        </div>
-      </div>
 
-      <div class="grid-item" id="sample2">
-        <div>type mini & custom style part(text)</div>
-        <nostr-share data-type="mini" data-text="さんぷるシェアテキスト https://example.com"></nostr-share>
-        <div>
-          <p class="codetyle">html</p>
-          <pre>&lt;nostr-share data-type="mini" data-text="さんぷるシェアテキスト https://example.com"&gt;&lt;/nostr-share&gt;</pre>
+        <div style="font-weight: bold; margin-top: 3rem">custom</div>
+        <div class="input-container">
+          <div class="form-group">
+            <label for="text">data-text:</label>
+            <textarea id="text" placeholder="Enter Text" rows="4">
+さんぷるシェアテキスト https://example.com</textarea
+            >
+          </div>
+        </div>
+        <div class="grid-item">
+          <div>type icon</div>
+          <nostr-share
+            data-type="icon"
+            data-text="さんぷるシェアテキスト https://example.com"
+          ></nostr-share>
+          <div>
+            <p class="codetyle">html</p>
+            <pre>
+&lt;nostr-share data-type="icon" data-text="さんぷるシェアテキスト https://example.com"&gt;&lt;/nostr-share&gt;</pre
+            >
+          </div>
+        </div>
+        <div class="grid-item">
+          <div>type icon</div>
+          <nostr-share
+            data-type="icon"
+            icon-size="72"
+            data-text="さんぷるシェアテキスト https://example.com"
+          ></nostr-share>
+          <div>
+            <p class="codetyle">html</p>
+            <pre>
+&lt;nostr-share data-type="icon" icon-size="72" data-text="さんぷるシェアテキスト https://example.com"&gt;&lt;/nostr-share&gt;</pre
+            >
+          </div>
+        </div>
 
-          <p class="codetyle">css</p>
-          <pre><code>nostr-share::part(text) {
+        <div class="grid-item" id="sample2">
+          <div>type mini & custom style part(text)</div>
+          <nostr-share
+            data-type="mini"
+            data-text="さんぷるシェアテキスト https://example.com"
+          ></nostr-share>
+          <div>
+            <p class="codetyle">html</p>
+            <pre>
+&lt;nostr-share data-type="mini" data-text="さんぷるシェアテキスト https://example.com"&gt;&lt;/nostr-share&gt;</pre
+            >
+
+            <p class="codetyle">css</p>
+            <pre><code>nostr-share::part(text) {
             font-style: italic;
             font-family: 'Courier New', Courier, monospace;
             font-size: medium;
           }</code></pre>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-item" id="sample1">
-        <div>custom text $ custom style part(button)</div>
-        <nostr-share data-text="さんぷるシェアテキスト https://example.com">カスタム</nostr-share>
-        <div>
-          <p class="codetyle">html</p>
-          <pre>&lt;nostr-share data-text="さんぷるシェアテキスト https://example.com"&gt;カスタム&lt;/nostr-share&gt;</pre>
-          <p class="codetyle">css</p>
-          <pre><code>nostr-share::part(button) {
+        <div class="grid-item" id="sample1">
+          <div>custom text $ custom style part(button)</div>
+          <nostr-share data-text="さんぷるシェアテキスト https://example.com"
+            >カスタム</nostr-share
+          >
+          <div>
+            <p class="codetyle">html</p>
+            <pre>
+&lt;nostr-share data-text="さんぷるシェアテキスト https://example.com"&gt;カスタム&lt;/nostr-share&gt;</pre
+            >
+            <p class="codetyle">css</p>
+            <pre><code>nostr-share::part(button) {
             background-color: rgb(0, 136, 255);
           }
       
           nostr-share::part(button):hover {
             background-color: rgb(255, 0, 0);
           }</code></pre>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <footer>
-    <nostr-share></nostr-share>
-    <a class="github" href="https://github.com/TsukemonoGit/nostr-share-component" target="_blank"
-      rel="noopener noreferrer">
-      <svg viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd"
-          d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" />
-      </svg>
-    </a>
-    <span class="makibishi"
-      data-relays="wss://relay.nostr.band/,wss://nos.lol/,wss://relay.damus.io/,wss://relay.nostr.wirednet.jp/,wss://relay-jp.nostr.wirednet.jp/,wss://yabu.me/,wss://r.kojira.io/"
-      data-allow-anonymous-reaction="true"></span>
-    <div>
-      <div
-        style="display: inline-flex; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
-        <button style="
-                  background: #4B5563;
-                  border: none;
-                  border-right: 1px solid rgba(255, 255, 255, 0.15);
-                  color: #FFFFFF;
-                  padding: 8px 14px;
-                  display: inline-flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-size: 13px;
-                  font-weight: 500;
-                  cursor: pointer;
-                  letter-spacing: 1px;
-                  min-width: 60px;
-                  height: 32px;
-                  -webkit-tap-highlight-color: transparent;
-                " data-npub="npub1sjcvg64knxkrt6ev52rywzu9uzqakgy8ehhk8yezxmpewsthst6sw3jqcw"
-          data-note-id="note1d0glkldtgcfje7yl3qryzp9t4jlmth7cswfjkrx0y35mcx2skgqs76gxv4"
-          data-relays="wss://relay.nostr.band,wss://relay.damus.io,wss://nos.lol,wss://nostr.bitcoiner.social,wss://relay.nostr.wirednet.jp,wss://yabu.me">
-          Zap
-        </button>
-        <button style="
-                  background: #4B5563;
-                  border: none;
-                  border-left: 1px solid rgba(255, 255, 255, 0.15);
-                  color: #FFFFFF;
-                  padding: 8px 14px;
-                  display: inline-flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-size: 13px;
-                  font-weight: 500;
-                  cursor: pointer;
-                  letter-spacing: 1px;
-                  min-width: 60px;
-                  height: 32px;
-                  -webkit-tap-highlight-color: transparent;
-                " data-title="たいとる"
-          data-nzv-id="nevent1qvzqqqqqqypzpp9sc34tdxdvxh4jeg5xgu9ctcypmvsg0n00vwfjydkrjaqh0qh4qqsxh50m0k45vyevlz0cspjpqj46e0a4mlvg8yetpn8jg6dur9gtyqgummkcz"
-          data-zap-color-mode="true"
-          data-relay-urls="wss://relay.nostr.band,wss://relay.damus.io,wss://nos.lol,wss://nostr.bitcoiner.social,wss://relay.nostr.wirednet.jp,wss://yabu.me">
-          View
-        </button>
+    <footer>
+      <nostr-share></nostr-share>
+      <a
+        class="github"
+        href="https://github.com/TsukemonoGit/nostr-share-component"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
+          />
+        </svg>
+      </a>
+      <span
+        class="makibishi"
+        data-relays="wss://relay.nostr.band/,wss://nos.lol/,wss://relay.damus.io/,wss://relay.nostr.wirednet.jp/,wss://relay-jp.nostr.wirednet.jp/,wss://yabu.me/,wss://r.kojira.io/"
+        data-allow-anonymous-reaction="true"
+      ></span>
+      <div>
+        <div
+          style="
+            display: inline-flex;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          "
+        >
+          <button
+            style="
+              background: #4b5563;
+              border: none;
+              border-right: 1px solid rgba(255, 255, 255, 0.15);
+              color: #ffffff;
+              padding: 8px 14px;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 13px;
+              font-weight: 500;
+              cursor: pointer;
+              letter-spacing: 1px;
+              min-width: 60px;
+              height: 32px;
+              -webkit-tap-highlight-color: transparent;
+            "
+            data-npub="npub1sjcvg64knxkrt6ev52rywzu9uzqakgy8ehhk8yezxmpewsthst6sw3jqcw"
+            data-note-id="note1d0glkldtgcfje7yl3qryzp9t4jlmth7cswfjkrx0y35mcx2skgqs76gxv4"
+            data-relays="wss://relay.nostr.band,wss://relay.damus.io,wss://nos.lol,wss://nostr.bitcoiner.social,wss://relay.nostr.wirednet.jp,wss://yabu.me"
+          >
+            Zap
+          </button>
+          <button
+            style="
+              background: #4b5563;
+              border: none;
+              border-left: 1px solid rgba(255, 255, 255, 0.15);
+              color: #ffffff;
+              padding: 8px 14px;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 13px;
+              font-weight: 500;
+              cursor: pointer;
+              letter-spacing: 1px;
+              min-width: 60px;
+              height: 32px;
+              -webkit-tap-highlight-color: transparent;
+            "
+            data-title="たいとる"
+            data-nzv-id="nevent1qvzqqqqqqypzpp9sc34tdxdvxh4jeg5xgu9ctcypmvsg0n00vwfjydkrjaqh0qh4qqsxh50m0k45vyevlz0cspjpqj46e0a4mlvg8yetpn8jg6dur9gtyqgummkcz"
+            data-zap-color-mode="true"
+            data-relay-urls="wss://relay.nostr.band,wss://relay.damus.io,wss://nos.lol,wss://nostr.bitcoiner.social,wss://relay.nostr.wirednet.jp,wss://yabu.me"
+          >
+            View
+          </button>
+        </div>
       </div>
-    </div>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
 
-  </footer>
-  <script type="module" src="/src/main.ts"></script>
+    <script>
+      // Select input fields
 
-  <script>
-    // Select input fields
+      const textareaInput = document.getElementById("text");
 
-    const textareaInput = document.getElementById("text");
+      // Select all nostr-share elements
+      const nostrShares = document.querySelectorAll("nostr-share");
 
-    // Select all nostr-share elements
-    const nostrShares = document.querySelectorAll("nostr-share");
+      // Function to update attributes dynamically
+      const updateAttributes = () => {
+        const text = textareaInput.value || "";
 
-    // Function to update attributes dynamically
-    const updateAttributes = () => {
+        nostrShares.forEach((element) => {
+          element.setAttribute("data-text", text);
+        });
+      };
 
-      const text = textareaInput.value || "";
+      // Add event listeners to input fields
 
-      nostrShares.forEach((element) => {
-        element.setAttribute("data-text", text);
-      });
-    };
-
-    // Add event listeners to input fields
-
-    textareaInput.addEventListener("input", updateAttributes);
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/nostr-zap@1.1.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/nostr-zap-view@1.3.6"></script>
-</body>
-
+      textareaInput.addEventListener("input", updateAttributes);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/nostr-zap@1.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/nostr-zap-view@1.3.6"></script>
+  </body>
 </html>
