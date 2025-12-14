@@ -1,5 +1,10 @@
 export const list = [
   {
+    name: "nokakoi",
+    url: "https://nokakoi.com/app/?text={text}",
+    icon: "https://nokakoi.com/favicon.ico",
+  },
+  {
     name: "Nos Haiku",
     url: "https://nos-haiku.vercel.app/antenna?content={text}",
     icon: "https://nos-haiku.vercel.app/favicon.png",
