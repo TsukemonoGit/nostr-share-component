@@ -1,5 +1,10 @@
 export const list = [
   {
+    name: "eHagaki",
+    url: "https://lokuyow.github.io/ehagaki/?content={text}",
+    icon: "https://lokuyow.github.io/ehagaki/favicon.ico",
+  },
+  {
     name: "nokakoi",
     url: "https://nokakoi.com/app/?text={text}",
     icon: "https://nokakoi.com/favicon.ico",
