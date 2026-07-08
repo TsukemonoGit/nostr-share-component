@@ -61,10 +61,6 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
-    position: absolute;
-    top: 0;
-    left: 0;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,10 +83,6 @@
   }
   @media (prefers-color-scheme: dark) {
     :host {
-      top: 0;
-      left: 0;
-      position: absolute;
-
       display: flex;
       justify-content: center;
       align-items: center;
