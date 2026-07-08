@@ -23,15 +23,16 @@
     "icon-size": iconSize = 28,
   }: NostrShareProps = $props();
 
-  let openDialog = $state(false);
+  let isDialogOpen = $state(false);
 
-  const handleClickOpenDialog = () => {
-    openDialog = true;
-  };
+  // 外側から実ユーザー操作内で直接呼べる公開API
+  export function openDialog(): void {
+    isDialogOpen = true;
+  }
 
-  const closeDialog = () => {
-    openDialog = false;
-  };
+  export function closeDialog(): void {
+    isDialogOpen = false;
+  }
 
   // 数値変換
   const resolvedIconSize =
@@ -42,7 +43,7 @@
   part="button"
   title="Share on Nostr"
   data-nostr-share={buttonType}
-  onclick={handleClickOpenDialog}
+  onclick={openDialog}
 >
   <slot>
     <NostrIcon size={buttonType === "icon" ? resolvedIconSize : 28} />
@@ -52,7 +53,7 @@
   </slot>
 </button>
 
-{#if openDialog}
+{#if isDialogOpen}
   <Dialog handleClose={closeDialog} {text} {tags} />
 {/if}
 

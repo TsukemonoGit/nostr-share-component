@@ -386,6 +386,16 @@ nostr-share::part(button):hover {
     <h3>Demo</h3>
     <div class="nostr-share-container">
       <div class="nostr-share-items">
+        <div class="grid-item" id="demo-direct">
+          <div style="font-weight: bold">direct method call (openDialog)</div>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:center;justify-content:center">
+            <button onclick="document.getElementById('ms-demo').openDialog()">Open Share Dialog</button>
+            <nostr-share id="ms-demo"></nostr-share>
+          </div>
+          <pre>nostr-share の openDialog() / closeDialog() メソッドを
+直接呼び出すことで、合成クリックを挟まずにダイアログを開く</pre>
+        </div>
+
         <div class="grid-item">
           <div style="font-weight: bold">simple</div>
           <nostr-share></nostr-share>
@@ -477,6 +487,21 @@ nostr-share::part(button):hover {
           nostr-share::part(button):hover {
             background-color: rgb(255, 0, 0);
           }</code></pre>
+          </div>
+        </div>
+
+        <div class="grid-item">
+          <div>direct method call (openDialog / closeDialog)</div>
+          <div>
+            <p class="codetyle">html</p>
+            <pre>&lt;button onclick="document.getElementById('my-nostr-share').openDialog()"&gt;
+  Open Share Dialog
+&lt;/button&gt;
+&lt;nostr-share id="my-nostr-share"&gt;&lt;/nostr-share&gt;</pre>
+            <p class="codetyle">js</p>
+            <pre><code>const share = document.getElementById('my-nostr-share');
+share.openDialog();  // ダイアログを開く
+share.closeDialog(); // ダイアログを閉める</code></pre>
           </div>
         </div>
 
