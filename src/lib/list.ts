@@ -21,7 +21,7 @@ export const list = [
   },
   {
     name: "Lumilumi",
-    url: "https://lumilumi.app/post?text={text}",
+    url: "https://lumilumi.app/post?text={text}&tags={tags}",
     icon: "https://lumilumi.app/favicon.ico",
   },
 ];

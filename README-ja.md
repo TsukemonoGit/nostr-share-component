@@ -25,12 +25,22 @@ https://cdn.jsdelivr.net/npm/@konemono/nostr-share-component@{version}/dist/nost
 ```
 
 - data-text に共有したい文字列を指定することができます。
+- data-tags にカスタム絵文字のtags情報をJSON文字列として指定できます（任意）。
 - 指定されていない場合、設置したサイトの URL とタイトルが共有されます。
 
 例:
 
 ```html
 <nostr-share data-text="Example Text"></nostr-share>
+```
+
+text と tags を指定する場合:
+
+```html
+<nostr-share
+  data-text="こんにちは :huanglian:"
+  data-tags='[["emoji","huanglian","https://example.com/huanglian.png"]]'>
+</nostr-share>
 ```
 
 ### 3. ボタンの種類を指定（任意）

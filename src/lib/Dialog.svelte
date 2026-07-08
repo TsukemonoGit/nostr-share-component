@@ -5,9 +5,10 @@
 
   interface Props {
     text?: string;
+    tags?: string;
     handleClose: () => void;
   }
-  let { text = "", handleClose }: Props = $props();
+  let { text = "", tags = "", handleClose }: Props = $props();
 
   //   // アクセス元のデバイス情報を取得
   //  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -23,14 +24,15 @@
   //   }
 
   const handleClickList = (clientUrl: string) => {
-    // url, text, shareTitleが空の場合、デフォルト値を設定
+    // url, textが空の場合、デフォルト値を設定
     if (text === "") {
-      text = `${document.title}\n${window.location.href}`; // 現在のページのタイトルを取得// 現在のページのURLを取得
+      text = `${document.title}\n${window.location.href}`; // 現在のページのタイトルを取得 // 現在のページのURLを取得
     }
-    const link = clientUrl.replace("{text}", encodeURIComponent(text));
+    // urlの{text}と{tags}プレースホルダーを実際の値に置換
+    let link = clientUrl.replace("{text}", encodeURIComponent(text ?? ""));
+    link = link.replace("{tags}", encodeURIComponent(tags ?? ""));
 
-    // const shareUrl = generateShareUrl(link); //とりあえずlumilumiとnostterはこれしなくてもよさげだからとりあえずしなくていいかのやつ（要素が空のパラメーターを削除）
-
+    // 選択したクライアントで新しいタブを開く
     console.log(link);
     window.open(link, "_blank", "noreferrer");
     handleClose();

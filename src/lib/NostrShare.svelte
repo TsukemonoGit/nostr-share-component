@@ -11,12 +11,14 @@
 
   export interface NostrShareProps {
     "data-text"?: string;
+    "data-tags"?: string;
     "data-type"?: "default" | "mini" | "icon";
     "icon-size"?: string | number;
   }
 
   let {
-    "data-text": text,
+    "data-text": text = "",
+    "data-tags": tags = "",
     "data-type": buttonType = "default",
     "icon-size": iconSize = 28,
   }: NostrShareProps = $props();
@@ -51,7 +53,7 @@
 </button>
 
 {#if openDialog}
-  <Dialog handleClose={closeDialog} {text} />
+  <Dialog handleClose={closeDialog} {text} {tags} />
 {/if}
 
 <style>
@@ -137,7 +139,7 @@
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
   }
 
-  [data-nostr-share="icon"] {
+ [data-nostr-share="icon"] {
     width: var(--icon-size);
     height: var(--icon-size);
     padding: 2px;
