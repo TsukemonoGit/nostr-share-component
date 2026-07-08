@@ -41,21 +41,21 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="overlay" onclick={handleClose}>
-  <div class="inner" onclick={(event) => event.stopPropagation()}>
-    <button onclick={handleClose} class="close-button" aria-label="Close"
+<div class="overlay" part="overlay" onclick={handleClose}>
+  <div class="inner" part="dialog" onclick={(event) => event.stopPropagation()}>
+    <button part="close-button" onclick={handleClose} class="close-button" aria-label="Close"
       >✖</button
     >
-    <h2 class="title">Select Share Client</h2>
-    <div class="list">
+    <h2 part="title" class="title">Select Share Client</h2>
+    <div part="list" class="list">
       {#each list as li}
-        <button class="item" onclick={() => handleClickList(li.url)}>
+        <button part="item" class="item" onclick={() => handleClickList(li.url)}>
           <img width={24} src={li.icon} alt={li.name} />
           <span class="item-name">{li.name}</span>
         </button>
       {/each}
     </div>
-    <div class="footer">
+    <div part="footer" class="footer">
       <a
         target="_blank"
         referrerpolicy="no-referrer"
